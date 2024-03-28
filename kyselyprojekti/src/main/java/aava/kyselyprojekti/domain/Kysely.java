@@ -11,7 +11,7 @@ public class Kysely {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long kyselyid;
-    
+
     private String tekija;
 
     public Kysely() {
@@ -19,8 +19,7 @@ public class Kysely {
         this.tekija = null;
     }
 
-    public Kysely(long kyselyid, String tekija) {
-        this.kyselyid = kyselyid;
+    public Kysely(String tekija) {
         this.tekija = tekija;
     }
     

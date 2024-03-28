@@ -12,7 +12,7 @@ public class Kysymys {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long kysymysid;
-    
+
     private String sisalto;
 
     public Kysymys() {
@@ -20,8 +20,7 @@ public class Kysymys {
         this.sisalto = null;
     }
 
-    public Kysymys(long kysymysid, String sisalto) {
-        this.kysymysid = kysymysid;
+    public Kysymys(String sisalto) {
         this.sisalto = sisalto;
     }
 

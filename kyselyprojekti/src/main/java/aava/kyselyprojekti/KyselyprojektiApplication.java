@@ -24,12 +24,21 @@ public class KyselyprojektiApplication {
 	public CommandLineRunner demo (KyselyRepository kyselyRepository, KysymysRepository kysymysRepository) {
 		return (args) -> {
 
-			// testikysely ja -kysymys  
-			Kysely kysely = new Kysely("Alina");
-			kyselyRepository.save(kysely);
 
-			Kysymys kysymys = new Kysymys("eka kysymys");
-			kysymysRepository.save(kysymys);
+
+			// testikysely ja -kysymys  
+			Kysely testikysely = new Kysely("Alina");
+			kyselyRepository.save(testikysely);
+
+			Kysymys kysymys1 = new Kysymys("eka kysymys", testikysely);
+			kysymysRepository.save(kysymys1);
+
+			Kysymys kysymys2 = new Kysymys("toka kysymys", testikysely);
+			kysymysRepository.save(kysymys2);
+
+			Kysymys kysymys3 = new Kysymys("kolmas kysymys", testikysely);
+			kysymysRepository.save(kysymys3);
+
 
 			// sisällöt näkyville terminaaliin loggerin avulla
 			for (Kysely kysely2 : kyselyRepository.findAll()) {

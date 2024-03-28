@@ -28,10 +28,12 @@ public class Kysymys {
     public Kysymys() {
         this.kysymysid = 0;
         this.sisalto = null;
+        this.kysely = null;
     }
 
-    public Kysymys(String sisalto) {
+    public Kysymys(String sisalto, Kysely kysely) {
         this.sisalto = sisalto;
+        this.kysely = kysely;
     }
 
     public long getKysymysid() {

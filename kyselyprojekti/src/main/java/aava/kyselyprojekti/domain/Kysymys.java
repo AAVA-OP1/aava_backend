@@ -1,9 +1,18 @@
 package aava.kyselyprojekti.domain;
 
-public class Kysymys {
-    
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Kysymys {    
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long kysymysid;
+    
     private String sisalto;
 
     public Kysymys() {

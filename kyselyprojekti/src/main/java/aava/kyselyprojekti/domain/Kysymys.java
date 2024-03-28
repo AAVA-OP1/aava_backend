@@ -1,9 +1,13 @@
 package aava.kyselyprojekti.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Kysymys {    
@@ -14,6 +18,12 @@ public class Kysymys {
     private long kysymysid;
 
     private String sisalto;
+
+    // Relaatio
+    @ManyToOne
+    @JsonIgnoreProperties("kysymykset")
+    @JoinColumn(name = "kyselyid")
+    private Kysely kysely; 
 
     public Kysymys() {
         this.kysymysid = 0;

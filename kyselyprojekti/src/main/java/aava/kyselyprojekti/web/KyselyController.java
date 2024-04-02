@@ -47,6 +47,14 @@ public class KyselyController {
         return "uusikysymys"; // .html
     }
 
+    @RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
+    public String tallennaKysely(Kysely uusiKysely, Model model) {
+
+        kyselyRepository.save(uusiKysely);
+
+        return "redirect:/index";
+    }
+
     // aloitettu avaakysely -metodi:
     // @RequestMapping(value = "/katsokysely/{id}", method = RequestMethod.GET)
     // public String katsoKysely() {

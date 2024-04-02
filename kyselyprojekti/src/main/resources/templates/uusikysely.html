@@ -27,7 +27,7 @@
       </div>
       <br>
       <div class="container">
-        <a th:href="@{/}" class="btn btn-primary btn-lg btn-block">Tallenna kysely</a>
+        <a class="btn btn-primary btn-lg btn-block" th:action="@{/tallennakysely}" action="#"  th:object="${kysely}" method="POST">Tallenna kysely</a>
       </div>
 
 </body>

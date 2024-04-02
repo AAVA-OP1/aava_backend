@@ -21,7 +21,21 @@
           </ul>
         </header>
       </div>
-    
+
+      <!-- Listaus aktiivisista kyselyistä -->
+      <div class="container">
+        <table class="table table-striped">
+          <tr>
+            <th>Kyselyn tekijä</th>
+            <th>Linkki kyselyyn</th>
+          </tr>
+          <tr th:each="kysely : ${kyselyt}">
+            <td th:text="${kysely.tekija}"></td>
+            <td>"Linkki"</td>
+          </tr>
+        </table>
+      </div>
+
     <!-- Lisää kysely -nappi -->
     <div class="container">
       <a th:href="@{/uusikysely}" class="btn btn-primary btn-lg btn-block">Lisää kysely</a>

@@ -1,5 +1,8 @@
 package aava.kyselyprojekti.web;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,6 +54,14 @@ public class KyselyController {
     public String uusiKysymys(Model model) {
 
         model.addAttribute("kysymys", new Kysymys());
+
+        List<Kysely> kyselyt = (List<Kysely>) kyselyRepository.findAll(); 
+        model.addAttribute("kyselyt", kyselyt);
+
+        Long size = (long) kyselyt.size();
+        Optional<Kysely> kysely = kyselyRepository.findById(size);
+        model.addAttribute("linkitettyKysely", kysely);
+
 
         return "uusikysymys"; // .html
     }

@@ -54,7 +54,7 @@ public class KyselyController {
         return "redirect:/index";
     }
 
-    //
+    // Ottaa valitun kyselyn ID ja menee edit sivulle
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String tarkastelekyselya(@PathVariable Long id, Model model) {
 

@@ -28,17 +28,14 @@
 
   <div class="container">
 
-    <form method="POST" action="#" th:action="@{/tallennakysymys}" th:object=${kysymys}>
-      <p>Kirjoita kysymys: <input type="text" th:field="${kysymys.sisalto}" /></p>
+    <h2>Tallenna uusi Kysymys</h2>
+    <form action="/tallennakysymys" method="post">
+        <label for="sisalto">Sisaltö:</label>
+        <input type="text" id="sisalto" name="sisalto" required size="29"><br><br>
+        
+        <input type="hidden" id="kysely" name="kysely" th:value="${linkitettyKysely.kyselyid}">
 
-<!--     tämä EI vielä toimi, ei tuo kyselyö kysymykseen -->
-      <input type="hidden" th:field="${kysymys.kysely}" th:value="${linkitettyKysely}" />
-  
-      <!--           <input type="hidden" th:field="${kysymys.kysely.kyselyid}"  th:value="${linkitettyKysely.kyselyid}" />
- -->
-      <!--   <input type="hidden" name="kysely" th:value="${kysely}" />
- -->
-      <input type="submit" value="Add" />
+        <button type="submit" class="btn btn-primary">Tallenna</button>
     </form>
 
 
@@ -55,6 +52,7 @@
       </tr>
     </table>
 
+    <!-- Console loggaus vain -->
     <table>
       <td th:text="${linkitettyKysely}">
         </th:text>

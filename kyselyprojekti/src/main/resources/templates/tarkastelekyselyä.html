@@ -26,33 +26,19 @@
 
       <div class="container">
 
-        <form method="POST" action="#" th:action="@{/tallennakysymys}" th:object=${kysymys}>
-          <p>Kirjoita kysymys: <input type="text" th:field="${kysymys.sisalto}" /></p>
-          <input type="hidden" th:field="${kysymys.kysely}"  th:value="${linkitettyKysely}" />
-<!--           <input type="hidden" th:field="${kysymys.kysely.kyselyid}"  th:value="${linkitettyKysely.kyselyid}" />
- -->
-<!--   <input type="hidden" name="kysely" th:value="${kysely}" />
- --> 
-          <input type="submit" value="Add" />
-      </form>
 
 
-
-            <!-- CONSOLE.loggaus -->
             <table class="table table-striped">
               <tr>
                 <th>Kyselyn sisältö</th>
-                <th>KYSELY</th>
+                <th>tekijä</th>
               </tr>
-              <tr th:each="kysymys : ${kysymykset}">
-                <td th:text="${kysymys.sisalto}"></td>
-                <td th:text="${kysymys.getKysely()}"></td>
+              <tr th:each="kysely : ${kysymykset}">
+                <td th:text="${kysely.toString()}"></td>
+                <td th:text="${kysely.tekija}"></td>
               </tr>
             </table>
 
-            <table>
-              <td th:text="${linkitettyKysely}"></th:text>
-            </table>
 
       </div>
 

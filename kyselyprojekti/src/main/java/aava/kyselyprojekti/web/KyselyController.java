@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -37,6 +38,8 @@ public class KyselyController {
     @RequestMapping(value = "/uusikysely", method = RequestMethod.GET)
     public String uusiKysely(Model model) {
 
+/*         Kysely uusiKysely = kyselyRepository.save(new Kysely());
+        model.addAttribute("kysely", uusiKysely); */
         model.addAttribute("kysely", new Kysely());
 
         return "uusikysely"; //.html
@@ -49,6 +52,14 @@ public class KyselyController {
 
         return "redirect:/index";
     }
+
+        //
+        @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+        public String tarkastelekyselyä(@PathVariable Long id, Model model) {
+    
+            model.addAttribute("kysymykset", kysymysRepository.findById(id));
+            return "tarkastelekyselyä"; //.html
+        }
 
     @RequestMapping(value = "/uusikysymys", method = RequestMethod.GET)
     public String uusiKysymys(Model model) {
@@ -67,8 +78,10 @@ public class KyselyController {
 
         Long size = (long) kyselyt.size();
     Optional<Kysely> kysely = kyselyRepository.findById(size);
-    model.addAttribute("linkitettyKysely", kysely);
-
+    if (kysely.isPresent()) {
+        Kysely kysely1 = kysely.get();
+    model.addAttribute("linkitettyKysely", kysely1);
+    }
 
         return "uusikysymys"; // .html
     }

@@ -22,7 +22,17 @@
         </header>
       </div>
     
-      
+      <!-- TEKSTI -->
+
+      <div class="container">
+
+        <form method="POST" action="#" th:action="@{/tallennakysymys}" th:object=${kysymys}>
+          <p>Kirjoita kysymys: <input type="text" th:field="${kysymys.sisalto}" /></p>
+
+          <input type="submit" value="Add" />
+      </form>
+
+      </div>
 
 </body>
 </html>

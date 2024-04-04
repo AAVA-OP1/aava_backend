@@ -39,6 +39,14 @@ public class KyselyController {
         return "uusikysely"; //.html
     }
 
+    @RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
+    public String tallennaKysely(Kysely uusiKysely, Model model) {
+
+        kyselyRepository.save(uusiKysely);
+
+        return "redirect:/index";
+    }
+
     @RequestMapping(value = "/uusikysymys", method = RequestMethod.GET)
     public String uusiKysymys(Model model) {
 
@@ -47,10 +55,11 @@ public class KyselyController {
         return "uusikysymys"; // .html
     }
 
-    @RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
-    public String tallennaKysely(Kysely uusiKysely, Model model) {
 
-        kyselyRepository.save(uusiKysely);
+    @RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
+    public String tallennaKysymys(Kysymys uusiKysymys, Model model) {
+
+        kysymysRepository.save(uusiKysymys);
 
         return "redirect:/index";
     }

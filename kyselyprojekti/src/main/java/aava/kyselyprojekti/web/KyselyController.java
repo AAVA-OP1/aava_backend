@@ -55,6 +55,7 @@ public class KyselyController {
     }
 
     // Ottaa valitun kyselyn ID ja menee edit sivulle
+    // Ei toimi vielä
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String tarkastelekyselya(@PathVariable Long id, Model model) {
 

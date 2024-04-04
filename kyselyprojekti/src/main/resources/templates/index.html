@@ -32,7 +32,8 @@
           <tr th:each="kysely : ${kyselyt}">
             <td th:text="${kysely.tekija}"></td>
             <!-- <td>"Linkki"</td> -->
-            <td><a th:href="@{'/tarkastelekyselya/' 7+ ${kysely.kyselyid}}" class="btn btn-primary">Katso kysely</a></td>
+            <!-- Linkki-toiminnallisuus ei vielä toimi -->
+            <td><a th:href="@{'/tarkastelekyselya/' + ${kysely.kyselyid}}" class="btn btn-primary">Katso kysely</a></td>
           </tr>
         </table>
       </div>

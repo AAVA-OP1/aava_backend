@@ -1,61 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
-    <title>Lisää kysely</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+  <title>Lisää kysely</title>
 </head>
+
 <body>
-    <!-- Lisää uusi kysely -->
+  <!-- Lisää uusi kysely -->
 
-    <!-- HEADER -->
-    <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-    
-          <ul class="nav nav-pills">
-            <li class="nav-item"><a href="index" th:href="@{/index}" aria-current="page" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="uusikysely" th:href="@{/uusikysely}" class="nav-link active" >Uusi kysely</a></li>
-            <li class="nav-item list-group-item-danger "><a href="#" class="nav-link" >Log out</a></li>
-          </ul>
-        </header>
-      </div>
-    
-      <!-- TEKSTI -->
+  <!-- HEADER -->
+  <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
 
-      <div class="container">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="index" th:href="@{/index}" aria-current="page" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="uusikysely" th:href="@{/uusikysely}" class="nav-link active">Uusi kysely</a></li>
+        <li class="nav-item list-group-item-danger "><a href="#" class="nav-link">Log out</a></li>
+      </ul>
+    </header>
+  </div>
 
-        <form method="POST" action="#" th:action="@{/tallennakysymys}" th:object=${kysymys}>
-          <p>Kirjoita kysymys: <input type="text" th:field="${kysymys.sisalto}" /></p>
-          <input type="hidden" th:field="${kysymys.kysely}"  th:value="${linkitettyKysely}" />
-<!--           <input type="hidden" th:field="${kysymys.kysely.kyselyid}"  th:value="${linkitettyKysely.kyselyid}" />
+  <!-- TEKSTI -->
+
+  <div class="container">
+
+    <form method="POST" action="#" th:action="@{/tallennakysymys}" th:object=${kysymys}>
+      <p>Kirjoita kysymys: <input type="text" th:field="${kysymys.sisalto}" /></p>
+
+<!--     tämä EI vielä toimi, ei tuo kyselyö kysymykseen -->
+      <input type="hidden" th:field="${kysymys.kysely}" th:value="${linkitettyKysely}" />
+  
+      <!--           <input type="hidden" th:field="${kysymys.kysely.kyselyid}"  th:value="${linkitettyKysely.kyselyid}" />
  -->
-<!--   <input type="hidden" name="kysely" th:value="${kysely}" />
- --> 
-          <input type="submit" value="Add" />
-      </form>
+      <!--   <input type="hidden" name="kysely" th:value="${kysely}" />
+ -->
+      <input type="submit" value="Add" />
+    </form>
 
 
+<!-- Listaus ihan hyvä, tee jatkossa että näyttää vain tämän kyselyn kysymykset, nyt näyttää kaikki -->
+    <!-- CONSOLE.loggaus -->
+    <table class="table table-striped">
+      <tr>
+        <th>Kyselyn sisältö</th>
+        <th>KYSELY</th>
+      </tr>
+      <tr th:each="kysymys : ${kysymykset}">
+        <td th:text="${kysymys.sisalto}"></td>
+        <td th:text="${kysymys.getKysely()}"></td>
+      </tr>
+    </table>
 
-            <!-- CONSOLE.loggaus -->
-            <table class="table table-striped">
-              <tr>
-                <th>Kyselyn sisältö</th>
-                <th>KYSELY</th>
-              </tr>
-              <tr th:each="kysymys : ${kysymykset}">
-                <td th:text="${kysymys.sisalto}"></td>
-                <td th:text="${kysymys.getKysely()}"></td>
-              </tr>
-            </table>
+    <table>
+      <td th:text="${linkitettyKysely}">
+        </th:text>
+    </table>
 
-            <table>
-              <td th:text="${linkitettyKysely}"></th:text>
-            </table>
-
-      </div>
+  </div>
 
 </body>
-</html>
 
+</html>

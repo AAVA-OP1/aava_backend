@@ -42,10 +42,12 @@ public class KyselyController {
          * model.addAttribute("kysely", uusiKysely);
          */
         model.addAttribute("kysely", new Kysely());
+        // tässä uuden kyselyn id aina 0, koska parametrittomassa konstruktorissa asetetaan aina id = 0
 
         return "uusikysely"; // .html
     }
 
+    // tallentaa kyselyn kyselyrepoon -> näkyy etusivulla
     @RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
     public String tallennaKysely(Kysely uusiKysely, Model model) {
 
@@ -57,8 +59,13 @@ public class KyselyController {
     // Ottaa valitun kyselyn ID ja menee edit sivulle
     // Ei toimi vielä
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String tarkastelekyselya(@PathVariable Long id, Model model) {
+    public String tarkastelekyselya(@PathVariable("id") Long id, Model model) {
 
+        // nyt hakee kyselyn id:n perusteella kysymysRepositorystä
+        // eli jos kyselyn id = 0, hakee vain kysymykset joiden id = 0
+        // List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findByKyselyId(id)?
+        // -> vaatii siis findByKyselyId:n teon kysymysrepoon
+        // en uskalla kokeilla t. Alina
         Optional<Kysymys> kysymykset = kysymysRepository.findById(id);
         if (kysymykset.isPresent()) {
 
@@ -68,9 +75,11 @@ public class KyselyController {
             return "redirect:/index";
     }
 
+    // en ymmärrä, help
     @RequestMapping(value = "/uusikysymys", method = RequestMethod.GET)
     public String uusiKysymys(Model model) {
 
+        // Kysymys -luokassa tyhjän kysymyksen konstruktori laittaa id:ksi aina 0
         model.addAttribute("kysymys", new Kysymys());
 
         List<Kysely> kyselyt = (List<Kysely>) kyselyRepository.findAll();
@@ -95,6 +104,7 @@ public class KyselyController {
         return "uusikysymys"; // .html
     }
 
+    
     @RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
     public String tallennaKysymys(Kysymys uusiKysymys, Model model) {
 
@@ -103,6 +113,7 @@ public class KyselyController {
         return "redirect:/uusikysymys";
     }
 
+    // tämä turha? koska tarkastelekyselya() 
     // aloitettu avaakysely -metodi:
     // @RequestMapping(value = "/katsokysely/{id}", method = RequestMethod.GET)
     // public String katsoKysely() {

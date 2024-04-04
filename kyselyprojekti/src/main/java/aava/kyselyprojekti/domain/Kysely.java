@@ -55,6 +55,14 @@ public class Kysely {
         return "Kysely [kyselyid=" + kyselyid + ", tekija=" + tekija + "]";
     }
 
+    public List<Kysymys> getKysymykset() {
+        return kysymykset;
+    }
+
+    public void setKysymykset(List<Kysymys> kysymykset) {
+        this.kysymykset = kysymykset;
+    }
+
     
 
 }

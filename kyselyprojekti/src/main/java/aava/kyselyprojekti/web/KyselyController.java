@@ -58,9 +58,16 @@ public class KyselyController {
         List<Kysely> kyselyt = (List<Kysely>) kyselyRepository.findAll(); 
         model.addAttribute("kyselyt", kyselyt);
 
-        Long size = (long) kyselyt.size();
+        List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findAll(); 
+        model.addAttribute("kysymykset", kysymykset);
+
+/*         Long size = (long) kyselyt.size();
         Optional<Kysely> kysely = kyselyRepository.findById(size);
-        model.addAttribute("linkitettyKysely", kysely);
+        model.addAttribute("linkitettyKysely", kysely); */
+
+        Long size = (long) kyselyt.size();
+    Optional<Kysely> kysely = kyselyRepository.findById(size);
+    model.addAttribute("linkitettyKysely", kysely);
 
 
         return "uusikysymys"; // .html
@@ -72,7 +79,7 @@ public class KyselyController {
 
         kysymysRepository.save(uusiKysymys);
 
-        return "redirect:/index";
+        return "redirect:/uusikysymys";
     }
 
     // aloitettu avaakysely -metodi:

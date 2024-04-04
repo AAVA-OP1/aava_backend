@@ -57,6 +57,14 @@ public class Kysymys {
         return "Kysymys [kysymysid=" + kysymysid + ", sisalto=" + sisalto + "]";
     }
 
+    public Kysely getKysely() {
+        return kysely;
+    }
+
+    public void setKysely(Kysely kysely) {
+        this.kysely = kysely;
+    }
+
     
 
     

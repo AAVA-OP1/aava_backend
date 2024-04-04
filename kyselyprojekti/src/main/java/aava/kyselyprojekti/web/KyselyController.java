@@ -15,7 +15,6 @@ import aava.kyselyprojekti.domain.KyselyRepository;
 import aava.kyselyprojekti.domain.Kysymys;
 import aava.kyselyprojekti.domain.KysymysRepository;
 
-
 @Controller
 public class KyselyController {
 
@@ -31,18 +30,20 @@ public class KyselyController {
     public String aloitusSivu(Model model) {
 
         model.addAttribute("kyselyt", kyselyRepository.findAll());
-        return "index"; //.html
+        return "index"; // .html
     }
 
     // uuden kyselyn endpoint
     @RequestMapping(value = "/uusikysely", method = RequestMethod.GET)
     public String uusiKysely(Model model) {
 
-/*         Kysely uusiKysely = kyselyRepository.save(new Kysely());
-        model.addAttribute("kysely", uusiKysely); */
+        /*
+         * Kysely uusiKysely = kyselyRepository.save(new Kysely());
+         * model.addAttribute("kysely", uusiKysely);
+         */
         model.addAttribute("kysely", new Kysely());
 
-        return "uusikysely"; //.html
+        return "uusikysely"; // .html
     }
 
     @RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
@@ -53,39 +54,45 @@ public class KyselyController {
         return "redirect:/index";
     }
 
-        //
-        @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-        public String tarkastelekyselyä(@PathVariable Long id, Model model) {
-    
-            model.addAttribute("kysymykset", kysymysRepository.findById(id));
-            return "tarkastelekyselyä"; //.html
-        }
+    //
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String tarkastelekyselya(@PathVariable Long id, Model model) {
+
+        Optional<Kysymys> kysymykset = kysymysRepository.findById(id);
+        if (kysymykset.isPresent()) {
+
+            model.addAttribute("kysymykset", kysymykset);
+            return "tarkastelekyselya"; // .html
+        } else
+            return "redirect:/index";
+    }
 
     @RequestMapping(value = "/uusikysymys", method = RequestMethod.GET)
     public String uusiKysymys(Model model) {
 
         model.addAttribute("kysymys", new Kysymys());
 
-        List<Kysely> kyselyt = (List<Kysely>) kyselyRepository.findAll(); 
+        List<Kysely> kyselyt = (List<Kysely>) kyselyRepository.findAll();
         model.addAttribute("kyselyt", kyselyt);
 
-        List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findAll(); 
+        List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findAll();
         model.addAttribute("kysymykset", kysymykset);
 
-/*         Long size = (long) kyselyt.size();
-        Optional<Kysely> kysely = kyselyRepository.findById(size);
-        model.addAttribute("linkitettyKysely", kysely); */
+        /*
+         * Long size = (long) kyselyt.size();
+         * Optional<Kysely> kysely = kyselyRepository.findById(size);
+         * model.addAttribute("linkitettyKysely", kysely);
+         */
 
         Long size = (long) kyselyt.size();
-    Optional<Kysely> kysely = kyselyRepository.findById(size);
-    if (kysely.isPresent()) {
-        Kysely kysely1 = kysely.get();
-    model.addAttribute("linkitettyKysely", kysely1);
-    }
+        Optional<Kysely> kysely = kyselyRepository.findById(size);
+        if (kysely.isPresent()) {
+            Kysely kysely1 = kysely.get();
+            model.addAttribute("linkitettyKysely", kysely1);
+        }
 
         return "uusikysymys"; // .html
     }
-
 
     @RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
     public String tallennaKysymys(Kysymys uusiKysymys, Model model) {
@@ -99,8 +106,7 @@ public class KyselyController {
     // @RequestMapping(value = "/katsokysely/{id}", method = RequestMethod.GET)
     // public String katsoKysely() {
 
-    //     return "katsokysely"; //.html
+    // return "katsokysely"; //.html
     // }
 
-    
 }

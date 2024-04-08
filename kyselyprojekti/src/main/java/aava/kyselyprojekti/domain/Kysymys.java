@@ -25,6 +25,8 @@ public class Kysymys {
     @JoinColumn(name = "kyselyid")
     private Kysely kysely; 
 
+    // Linkitä vastaus tänne
+
     public Kysymys() {
         
     }

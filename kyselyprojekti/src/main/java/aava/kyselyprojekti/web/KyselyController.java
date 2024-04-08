@@ -56,27 +56,11 @@ public class KyselyController {
         return "redirect:/index";
     }
 
-    // Ottaa valitun kyselyn ID ja menee edit sivulle
-    // Ei toimi vielä
-    @RequestMapping(value = "/edit/{kysely}", method = RequestMethod.GET)
+    @RequestMapping(value = "/tarkastelekyselya/{kysely}", method = RequestMethod.GET)
     public String tarkastelekyselya(@PathVariable("kysely") Kysely kysely, Model model) {
 
-        // nyt hakee kyselyn id:n perusteella kysymysRepositorystä
-        // eli jos kyselyn id = 0, hakee vain kysymykset joiden id = 0
-        // List<Kysymys> kysymykset = (List<Kysymys>)
-        // kysymysRepository.findByKyselyId(id)?
-        // -> vaatii siis findByKyselyId:n teon kysymysrepoon
-        // en uskalla kokeilla t. Alina
 
         model.addAttribute("kysymykset", kysymysRepository.findByKysely(kysely));
-
-        // Optional<Kysymys> kysymykset = kysymysRepository.findById(id);
-        // if (kysymykset.isPresent()) {
-
-        //     model.addAttribute("kysymykset", kysymykset);
-        //     return "tarkastelekyselya"; // .html
-        // } else
-        //     return "redirect:/index";
 
         return "tarkastelekyselya"; // .html
 

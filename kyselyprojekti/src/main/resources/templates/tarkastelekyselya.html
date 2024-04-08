@@ -30,12 +30,12 @@
 
             <table class="table table-striped">
               <tr>
-                <th>Kyselyn sisältö</th>
-                <th>tekijä</th>
+                <th>Kysymys ID</th>
+                <th>Kysymyksen sisältö</th>
               </tr>
-              <tr th:each="kysely : ${kysymykset}">
-                <td th:text="${kysely.toString()}"></td>
-                <td th:text="${kysely.tekija}"></td>
+              <tr th:each="kysymys : ${kysymykset}">
+                <td th:text="${kysymys.kysymysid}"></td>
+                <td th:text="${kysymys.sisalto}"></td>
               </tr>
             </table>
 

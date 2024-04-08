@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import aava.kyselyprojekti.domain.KyselyRepository;
 import aava.kyselyprojekti.domain.Kysymys;
 import aava.kyselyprojekti.domain.KysymysRepository;
 
+@CrossOrigin
 @Controller
 public class KyselyController {
 
@@ -59,13 +61,10 @@ public class KyselyController {
     @RequestMapping(value = "/tarkastelekyselya/{kysely}", method = RequestMethod.GET)
     public String tarkastelekyselya(@PathVariable("kysely") Kysely kysely, Model model) {
 
-
         model.addAttribute("kysymykset", kysymysRepository.findByKysely(kysely));
 
         return "tarkastelekyselya"; // .html
 
-    } 
-
-    
+    }
 
 }

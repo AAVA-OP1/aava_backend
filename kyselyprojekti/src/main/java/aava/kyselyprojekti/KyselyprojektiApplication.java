@@ -28,13 +28,13 @@ public class KyselyprojektiApplication {
 			Kysely testikysely = new Kysely(0, "Alina", null);
 			kyselyRepository.save(testikysely);
 
-			Kysymys kysymys1 = new Kysymys("eka kysymys", testikysely);
+			Kysymys kysymys1 = new Kysymys("Mikä on lempikurssisi?", testikysely);
 			kysymysRepository.save(kysymys1);
 
-			Kysymys kysymys2 = new Kysymys("toka kysymys", testikysely);
+			Kysymys kysymys2 = new Kysymys("Mikä on haaveammattisi?", testikysely);
 			kysymysRepository.save(kysymys2);
 
-			Kysymys kysymys3 = new Kysymys("kolmas kysymys", testikysely);
+			Kysymys kysymys3 = new Kysymys("Milloin valmistut?", testikysely);
 			kysymysRepository.save(kysymys3);
 
 			// sisällöt näkyville terminaaliin loggerin avulla

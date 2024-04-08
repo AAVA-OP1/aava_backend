@@ -26,7 +26,6 @@ public class KysymysController {
     @RequestMapping(value = "/uusikysymys", method = RequestMethod.GET)
     public String uusiKysymys(Model model) {
 
-        // Kysymys -luokassa tyhjän kysymyksen konstruktori laittaa id:ksi aina 0
         model.addAttribute("kysymys", new Kysymys());
 
         List<Kysely> kyselyt = (List<Kysely>) kyselyRepository.findAll();

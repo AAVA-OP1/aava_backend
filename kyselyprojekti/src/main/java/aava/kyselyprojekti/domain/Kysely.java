@@ -26,11 +26,8 @@ public class Kysely {
     @JsonIgnoreProperties("kysely")
     private List<Kysymys> kysymykset;
 
-    // uuden kyselyn id on aina 0?
     public Kysely() {
-        this.kyselyid = 0;
-        this.tekija = null;
-        this.nimi = null;
+        
     }
 
     // Konstruktori

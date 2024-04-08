@@ -20,7 +20,7 @@ public class Vastaus {
     // Relaatio
     @ManyToOne
     @JsonIgnoreProperties("vastaukset")
-    @JoinColumn(name = "vastusid")
+    @JoinColumn(name = "kysymysid")
     private Kysymys kysymys;
 
     public Vastaus(Long vastausid, String vastaus) {

@@ -16,7 +16,7 @@ public class KyselynTekija {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long tekijaid;
+    private long tekijaid;
 
     private String nimi;
 
@@ -48,9 +48,18 @@ public class KyselynTekija {
         this.tekijaid = tekijaid;
     }
 
+    
     @Override
     public String toString() {
-        return "KysymyksenTekija [tekijaid=" + tekijaid + ", nimi=" + nimi + "]";
+        return "KyselynTekija: [tekijaid=" + tekijaid + ", nimi=" + nimi + "]";
+    }
+
+    public List<Kysely> getKyselyt() {
+        return kyselyt;
+    }
+
+    public void setKyselyt(List<Kysely> kyselyt) {
+        this.kyselyt = kyselyt;
     }
 
     

@@ -20,7 +20,6 @@ public class Kysely {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long kyselyid;
 
-    private KyselynTekija tekija;
     private String nimi;
 
     // Relaatio
@@ -30,7 +29,7 @@ public class Kysely {
 
     @ManyToOne
     @JsonIgnoreProperties("kyselyt")
-    @JoinColumn(name = "kyselyid")
+    @JoinColumn(name = "tekijaid")
     private KyselynTekija kyselynTekija;
 
     public Kysely() {
@@ -38,8 +37,8 @@ public class Kysely {
     }
 
     // Konstruktori
-    public Kysely(KyselynTekija tekija, String nimi) {
-        this.tekija = tekija;
+    public Kysely(KyselynTekija kyselynTekija, String nimi) {
+        this.kyselynTekija = kyselynTekija;
         this.nimi = nimi;
     }
 
@@ -53,11 +52,11 @@ public class Kysely {
     }
 
     public KyselynTekija getTekija() {
-        return tekija;
+        return kyselynTekija;
     }
 
-    public void setTekija(KyselynTekija tekija) {
-        this.tekija = tekija;
+    public void setTekija(KyselynTekija kyselynTekija) {
+        this.kyselynTekija = kyselynTekija;
     }
 
     public List<Kysymys> getKysymykset() {
@@ -79,7 +78,15 @@ public class Kysely {
     // toString
     @Override
     public String toString() {
-        return "Kysely [kyselyid=" + kyselyid + ", tekija=" + tekija + "]";
+        return "Kysely [kyselyid=" + kyselyid + ", kyselynTekija=" + kyselynTekija + "]";
+    }
+
+    public KyselynTekija getKyselynTekija() {
+        return kyselynTekija;
+    }
+
+    public void setKyselynTekija(KyselynTekija kyselynTekija) {
+        this.kyselynTekija = kyselynTekija;
     }
 
 }

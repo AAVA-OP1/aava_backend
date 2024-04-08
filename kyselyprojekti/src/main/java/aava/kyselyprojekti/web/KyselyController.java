@@ -42,7 +42,8 @@ public class KyselyController {
          * model.addAttribute("kysely", uusiKysely);
          */
         model.addAttribute("kysely", new Kysely());
-        // tässä uuden kyselyn id aina 0, koska parametrittomassa konstruktorissa asetetaan aina id = 0
+        // tässä uuden kyselyn id aina 0, koska parametrittomassa konstruktorissa
+        // asetetaan aina id = 0
 
         return "uusikysely"; // .html
     }
@@ -63,7 +64,8 @@ public class KyselyController {
 
         // nyt hakee kyselyn id:n perusteella kysymysRepositorystä
         // eli jos kyselyn id = 0, hakee vain kysymykset joiden id = 0
-        // List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findByKyselyId(id)?
+        // List<Kysymys> kysymykset = (List<Kysymys>)
+        // kysymysRepository.findByKyselyId(id)?
         // -> vaatii siis findByKyselyId:n teon kysymysrepoon
         // en uskalla kokeilla t. Alina
         Optional<Kysymys> kysymykset = kysymysRepository.findById(id);
@@ -104,7 +106,6 @@ public class KyselyController {
         return "uusikysymys"; // .html
     }
 
-    
     @RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
     public String tallennaKysymys(Kysymys uusiKysymys, Model model) {
 
@@ -113,7 +114,7 @@ public class KyselyController {
         return "redirect:/uusikysymys";
     }
 
-    // tämä turha? koska tarkastelekyselya() 
+    // tämä turha? koska tarkastelekyselya()
     // aloitettu avaakysely -metodi:
     // @RequestMapping(value = "/katsokysely/{id}", method = RequestMethod.GET)
     // public String katsoKysely() {

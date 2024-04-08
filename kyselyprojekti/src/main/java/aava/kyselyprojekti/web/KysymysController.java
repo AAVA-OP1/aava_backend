@@ -23,7 +23,7 @@ public class KysymysController {
     @Autowired
     private KyselyRepository kyselyRepository;
 
-      @RequestMapping(value = "/uusikysymys", method = RequestMethod.GET)
+    @RequestMapping(value = "/uusikysymys", method = RequestMethod.GET)
     public String uusiKysymys(Model model) {
 
         // Kysymys -luokassa tyhjän kysymyksen konstruktori laittaa id:ksi aina 0

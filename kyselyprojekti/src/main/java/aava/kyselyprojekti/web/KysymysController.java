@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,9 +15,10 @@ import aava.kyselyprojekti.domain.KyselyRepository;
 import aava.kyselyprojekti.domain.Kysymys;
 import aava.kyselyprojekti.domain.KysymysRepository;
 
+@CrossOrigin
 @Controller
 public class KysymysController {
-    
+
     @Autowired
     private KysymysRepository kysymysRepository;
 
@@ -33,7 +35,6 @@ public class KysymysController {
 
         List<Kysymys> kysymykset = (List<Kysymys>) kysymysRepository.findAll();
         model.addAttribute("kysymykset", kysymykset);
-
 
         Long size = (long) kyselyt.size();
         Optional<Kysely> kysely = kyselyRepository.findById(size);

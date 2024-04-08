@@ -21,7 +21,7 @@ public class Vastaus {
     @ManyToOne
     @JsonIgnoreProperties("vastaukset")
     @JoinColumn(name = "vastusid")
-    private Kysely kysely;
+    private Kysymys kysymys;
 
     public Vastaus(Long vastausid, String vastaus) {
         this.vastausid = vastausid;

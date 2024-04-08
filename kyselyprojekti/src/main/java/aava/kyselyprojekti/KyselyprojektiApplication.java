@@ -21,13 +21,11 @@ public class KyselyprojektiApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo (KyselyRepository kyselyRepository, KysymysRepository kysymysRepository) {
+	public CommandLineRunner demo(KyselyRepository kyselyRepository, KysymysRepository kysymysRepository) {
 		return (args) -> {
 
-
-
-			// testikysely ja -kysymys  
-			Kysely testikysely = new Kysely("Alina");
+			// testikysely ja -kysymys
+			Kysely testikysely = new Kysely(0, "Alina", null);
 			kyselyRepository.save(testikysely);
 
 			Kysymys kysymys1 = new Kysymys("eka kysymys", testikysely);
@@ -39,7 +37,6 @@ public class KyselyprojektiApplication {
 			Kysymys kysymys3 = new Kysymys("kolmas kysymys", testikysely);
 			kysymysRepository.save(kysymys3);
 
-
 			// sisällöt näkyville terminaaliin loggerin avulla
 			for (Kysely kysely2 : kyselyRepository.findAll()) {
 				logger.info(kysely2.toString());
@@ -49,6 +46,7 @@ public class KyselyprojektiApplication {
 				logger.info(kyssari.toString());
 			}
 
-	};}
+		};
+	}
 
 }

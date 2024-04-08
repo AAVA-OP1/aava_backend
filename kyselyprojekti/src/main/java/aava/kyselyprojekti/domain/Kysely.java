@@ -19,6 +19,7 @@ public class Kysely {
     private long kyselyid;
 
     private String tekija;
+    private String nimi;
 
     // Relaatio
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "kysely")
@@ -29,12 +30,17 @@ public class Kysely {
     public Kysely() {
         this.kyselyid = 0;
         this.tekija = null;
+        this.nimi = null;
     }
 
-    public Kysely(String tekija) {
+    // Konstruktori
+    public Kysely(long kyselyid, String tekija, String nimi) {
+        this.kyselyid = kyselyid;
         this.tekija = tekija;
+        this.nimi = nimi;
     }
-    
+
+    // Getterit ja setterit
     public long getKyselyid() {
         return kyselyid;
     }
@@ -51,11 +57,6 @@ public class Kysely {
         this.tekija = tekija;
     }
 
-    @Override
-    public String toString() {
-        return "Kysely [kyselyid=" + kyselyid + ", tekija=" + tekija + "]";
-    }
-
     public List<Kysymys> getKysymykset() {
         return kysymykset;
     }
@@ -64,6 +65,18 @@ public class Kysely {
         this.kysymykset = kysymykset;
     }
 
-    
+    public String getNimi() {
+        return nimi;
+    }
+
+    public void setNimi(String nimi) {
+        this.nimi = nimi;
+    }
+
+    // toString
+    @Override
+    public String toString() {
+        return "Kysely [kyselyid=" + kyselyid + ", tekija=" + tekija + "]";
+    }
 
 }

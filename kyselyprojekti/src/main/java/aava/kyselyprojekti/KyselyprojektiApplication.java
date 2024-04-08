@@ -40,11 +40,11 @@ public class KyselyprojektiApplication {
 			Kysely testikysely2 = new Kysely("AlinaTaas", "Toinen testikysely");
 			kyselyRepository.save(testikysely2);
 
-			Kysymys kysymys3 = new Kysymys("Mikä on lempiohjelmointikielesi?", testikysely2);
-			kysymysRepository.save(kysymys3);
-
-			Kysymys kysymys4 = new Kysymys("Miksi valitsit juuri tämän tutkinnon?", testikysely2);
+			Kysymys kysymys4 = new Kysymys("Mikä on lempiohjelmointikielesi?", testikysely2);
 			kysymysRepository.save(kysymys4);
+
+			Kysymys kysymys5 = new Kysymys("Miksi valitsit juuri tämän tutkinnon?", testikysely2);
+			kysymysRepository.save(kysymys5);
 
 
 			// sisällöt näkyville terminaaliin loggerin avulla

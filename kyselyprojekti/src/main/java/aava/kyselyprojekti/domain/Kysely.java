@@ -31,8 +31,7 @@ public class Kysely {
     }
 
     // Konstruktori
-    public Kysely(long kyselyid, String tekija, String nimi) {
-        this.kyselyid = kyselyid;
+    public Kysely(String tekija, String nimi) {
         this.tekija = tekija;
         this.nimi = nimi;
     }

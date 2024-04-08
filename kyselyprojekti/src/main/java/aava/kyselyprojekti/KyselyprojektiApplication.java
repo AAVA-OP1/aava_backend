@@ -25,7 +25,7 @@ public class KyselyprojektiApplication {
 		return (args) -> {
 
 			// testikysely ja -kysymys
-			Kysely testikysely = new Kysely(0, "Alina", null);
+			Kysely testikysely = new Kysely("Alina", "Ensimmäinen testikysely");
 			kyselyRepository.save(testikysely);
 
 			Kysymys kysymys1 = new Kysymys("Mikä on lempikurssisi?", testikysely);
@@ -36,6 +36,16 @@ public class KyselyprojektiApplication {
 
 			Kysymys kysymys3 = new Kysymys("Milloin valmistut?", testikysely);
 			kysymysRepository.save(kysymys3);
+
+			Kysely testikysely2 = new Kysely("AlinaTaas", "Toinen testikysely");
+			kyselyRepository.save(testikysely2);
+
+			Kysymys kysymys3 = new Kysymys("Mikä on lempiohjelmointikielesi?", testikysely2);
+			kysymysRepository.save(kysymys3);
+
+			Kysymys kysymys4 = new Kysymys("Miksi valitsit juuri tämän tutkinnon?", testikysely2);
+			kysymysRepository.save(kysymys4);
+
 
 			// sisällöt näkyville terminaaliin loggerin avulla
 			for (Kysely kysely2 : kyselyRepository.findAll()) {

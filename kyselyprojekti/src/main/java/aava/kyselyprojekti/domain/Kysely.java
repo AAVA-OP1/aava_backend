@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -18,7 +20,7 @@ public class Kysely {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long kyselyid;
 
-    private String tekija;
+    private KyselynTekija tekija;
     private String nimi;
 
     // Relaatio
@@ -26,12 +28,17 @@ public class Kysely {
     @JsonIgnoreProperties("kysely")
     private List<Kysymys> kysymykset;
 
+    @ManyToOne
+    @JsonIgnoreProperties("kyselyt")
+    @JoinColumn(name = "kyselyid")
+    private KyselynTekija kyselynTekija;
+
     public Kysely() {
         
     }
 
     // Konstruktori
-    public Kysely(String tekija, String nimi) {
+    public Kysely(KyselynTekija tekija, String nimi) {
         this.tekija = tekija;
         this.nimi = nimi;
     }
@@ -45,11 +52,11 @@ public class Kysely {
         this.kyselyid = kyselyid;
     }
 
-    public String getTekija() {
+    public KyselynTekija getTekija() {
         return tekija;
     }
 
-    public void setTekija(String tekija) {
+    public void setTekija(KyselynTekija tekija) {
         this.tekija = tekija;
     }
 

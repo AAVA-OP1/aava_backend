@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import aava.kyselyprojekti.domain.Kysely;
 import aava.kyselyprojekti.domain.KyselyRepository;
+import aava.kyselyprojekti.domain.KyselynTekija;
+import aava.kyselyprojekti.domain.KyselynTekijaRepository;
 import aava.kyselyprojekti.domain.Kysymys;
 import aava.kyselyprojekti.domain.KysymysRepository;
 
@@ -21,11 +23,17 @@ public class KyselyprojektiApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(KyselyRepository kyselyRepository, KysymysRepository kysymysRepository) {
+	public CommandLineRunner demo(KyselyRepository kyselyRepository, KysymysRepository kysymysRepository, KyselynTekijaRepository kTekijaRepository) {
 		return (args) -> {
 
+			KyselynTekija t1 = new KyselynTekija("Alina");
+			kTekijaRepository.save(t1);
+
+			KyselynTekija t2 = new KyselynTekija("Aku");
+			kTekijaRepository.save(t2);
+
 			// testikysely ja -kysymys
-			Kysely testikysely = new Kysely("Alina", "Ensimmäinen testikysely");
+			Kysely testikysely = new Kysely(t1, "Ensimmäinen testikysely");
 			kyselyRepository.save(testikysely);
 
 			Kysymys kysymys1 = new Kysymys("Mikä on lempikurssisi?", testikysely);
@@ -37,7 +45,7 @@ public class KyselyprojektiApplication {
 			Kysymys kysymys3 = new Kysymys("Milloin valmistut?", testikysely);
 			kysymysRepository.save(kysymys3);
 
-			Kysely testikysely2 = new Kysely("AlinaTaas", "Toinen testikysely");
+			Kysely testikysely2 = new Kysely(t2, "Toinen testikysely");
 			kyselyRepository.save(testikysely2);
 
 			Kysymys kysymys4 = new Kysymys("Mikä on lempiohjelmointikielesi?", testikysely2);

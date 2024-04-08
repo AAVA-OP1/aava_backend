@@ -48,17 +48,17 @@ public class Vastaus {
         this.vastaus = vastaus;
     }
 
-    public Kysely getKysely() {
-        return kysely;
+    public Kysymys getKysymys() {
+        return kysymys;
     }
 
-    public void setKysely(Kysely kysely) {
-        this.kysely = kysely;
+    public void setKysely(Kysymys kysymys) {
+        this.kysymys = kysymys;
     }
 
     @Override
     public String toString() {
-        return "Vastaus [vastausid=" + vastausid + ", vastaus=" + vastaus + ", kysely=" + kysely + "]";
+        return "Vastaus [vastausid=" + vastausid + ", vastaus=" + vastaus + ", kysymys=" + kysymys + "]";
     }
 
 }

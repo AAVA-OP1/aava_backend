@@ -21,7 +21,7 @@ public class KyselynTekija {
     private String nimi;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "kyselynTekija")
-    @JsonIgnoreProperties("kyselynTekija")
+    @JsonIgnoreProperties("kyselyntekija")
     private List<Kysely> kyselyt;
 
     public KyselynTekija() {

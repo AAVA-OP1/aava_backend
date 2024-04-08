@@ -42,9 +42,11 @@ public class KyselyController {
          * Kysely uusiKysely = kyselyRepository.save(new Kysely());
          * model.addAttribute("kysely", uusiKysely);
          */
-        model.addAttribute("kysely", new Kysely());
+        Kysely kysely = new Kysely();
+        model.addAttribute("kysely", kysely);
         // tässä uuden kyselyn id aina 0, koska parametrittomassa konstruktorissa
         // asetetaan aina id = 0
+        kyselyRepository.save(kysely);
 
         return "uusikysely"; // .html
     }
@@ -52,8 +54,6 @@ public class KyselyController {
     // tallentaa kyselyn kyselyrepoon -> näkyy etusivulla
     @RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
     public String tallennaKysely(Kysely uusiKysely, Model model) {
-
-        kyselyRepository.save(uusiKysely);
 
         return "redirect:/index";
     }

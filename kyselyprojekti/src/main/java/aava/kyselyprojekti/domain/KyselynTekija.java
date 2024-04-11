@@ -14,6 +14,8 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class KyselynTekija {
 
+    // hallojaa
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long tekijaid;

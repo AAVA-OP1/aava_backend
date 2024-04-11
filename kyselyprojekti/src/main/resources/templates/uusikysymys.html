@@ -33,7 +33,7 @@
     <!-- <form action="#" th:action="@{/tallennakysely}" th:object="${kysely}" method="POST"> -->
     <form action="/tallennakysely" th:object="${kysely}" method="POST">
       <label for="nimi">Kyselyn nimi:</label>
-      <input type="text" id="nimi" name="nimi" >
+      <input type="text" id="nimi" name="nimi" required>
       <button type="submit" class="btn btn-primary">Tallenna kysely</button>
     </form>
 

@@ -51,13 +51,6 @@ public class Kysely {
         this.kyselyid = kyselyid;
     }
 
-    public KyselynTekija getTekija() {
-        return kyselynTekija;
-    }
-
-    public void setTekija(KyselynTekija kyselynTekija) {
-        this.kyselynTekija = kyselynTekija;
-    }
 
     public List<Kysymys> getKysymykset() {
         return kysymykset;

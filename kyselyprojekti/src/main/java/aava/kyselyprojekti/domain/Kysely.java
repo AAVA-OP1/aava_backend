@@ -68,11 +68,6 @@ public class Kysely {
         this.nimi = nimi;
     }
 
-    // toString
-    @Override
-    public String toString() {
-        return "Kysely [kyselyid=" + kyselyid + ", kyselynTekija=" + kyselynTekija + "]";
-    }
 
     public KyselynTekija getKyselynTekija() {
         return kyselynTekija;
@@ -82,4 +77,11 @@ public class Kysely {
         this.kyselynTekija = kyselynTekija;
     }
 
+    @Override
+    public String toString() {
+        return "Kysely [kyselyid=" + kyselyid + ", nimi=" + nimi + "]";
+    }
+
+
+    
 }

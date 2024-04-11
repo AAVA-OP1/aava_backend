@@ -26,10 +26,12 @@
       <div class="container">
         <table class="table table-striped">
           <tr>
+            <th>Kyselyn nimi</th>
             <th>Kyselyn tekijä</th>
             <th>Linkki kyselyyn</th>
           </tr>
           <tr th:each="kysely : ${kyselyt}">
+            <td th:text="${kysely.nimi}"></td>
             <td th:text="${kysely.kyselynTekija}"></td>
             <!-- <td>"Linkki"</td> -->
             <!-- Linkki-toiminnallisuus ei vielä toimi -->

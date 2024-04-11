@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import aava.kyselyprojekti.domain.Kysely;
 import aava.kyselyprojekti.domain.KyselyRepository;
@@ -54,17 +56,16 @@ public class KyselyController {
 
     // tallentaa kyselyn kyselyrepoon -> näkyy etusivulla
     @RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
-    public String tallennaKysely(Kysely uusiKysely, Model model) {
+    public String tallennaKysely(@ModelAttribute("kysely") Kysely uusiKysely, @RequestParam("nimi") String nimi, Model model) {
 
+        // kysely uusikysely on juuri muodostettu kysely
+        // string nimi on syöttökentästä annettu nimi
 
-        // TÄMÄ KESKEN AKULLA JA VALTTERILLA
-/*         List<Kysely> kyselyt = (List<Kysely>) kyselyRepository.findAll();
-        Long size = (long) kyselyt.size();
-        Optional<Kysely> kysely = kyselyRepository.findById(size);
-        if (kysely.isPresent()) {
-            kysely.setNimi(uusiKysely.getNimi());
-        } */
+        // Uusikysymys sivulta, kyselyn nimi tulee tähän ja laittaa sen nimemksi muokattavalle kyselylle
+        uusiKysely.setNimi(nimi);
 
+        // tallenna muutettu kysely repoon
+        kyselyRepository.save(uusiKysely);
 
         return "redirect:/uusikysymys";
     }

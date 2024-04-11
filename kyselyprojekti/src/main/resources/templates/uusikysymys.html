@@ -28,15 +28,29 @@
 
   <div class="container">
 
+
+    <!-- Kysely Form ja tallennys -->
+    <!-- <form action="#" th:action="@{/tallennakysely}" th:object="${kysely}" method="POST"> -->
+    <form action="/tallennakysely" th:object="${kysely}" method="POST">
+      <label for="nimi">Kyselyn nimi:</label>
+      <input type="text" id="nimi" name="nimi" >
+      <button type="submit" class="btn btn-primary">Tallenna kysely</button>
+    </form>
+
+
+    <!-- Kysymys tallennys ja form -->
     <h2>Tallenna uusi Kysymys</h2>
-    <form action="/tallennakysymys" method="post">
+    <form action="/tallennakysymys" method="post" th:object="${kysymys}">
         <label for="sisalto">Sisaltö:</label>
         <input type="text" id="sisalto" name="sisalto" required size="29"><br><br>
         
-        <!-- <input type="hidden" id="kysely" name="kysely" th:value="${linkitettyKysely.kyselyid}"> -->
+        <input type="hidden" id="kysely" name="kysely" th:value="${linkitettyKysely.kyselyid}">
 
-        <button type="submit" class="btn btn-primary">Tallenna</button>
+        <button type="submit" class="btn btn-primary">Tallenna kysymys</button>
     </form>
+    
+
+    
 
 
 <!-- Listaus ihan hyvä, tee jatkossa että näyttää vain tämän kyselyn kysymykset, nyt näyttää kaikki -->

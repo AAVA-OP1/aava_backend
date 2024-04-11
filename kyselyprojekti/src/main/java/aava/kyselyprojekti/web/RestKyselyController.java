@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import aava.kyselyprojekti.domain.Kysely;
 import aava.kyselyprojekti.domain.KyselyRepository;
-import aava.kyselyprojekti.domain.KyselynTekija;
+import aava.kyselyprojekti.domain.KysymysRepository;
+import aava.kyselyprojekti.domain.VastausRepository;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +24,7 @@ public class RestKyselyController {
     @Autowired
     private KyselyRepository kyselyRepository;
 
+
     // palauttaa kaikki kyselyt
     @RequestMapping(value = "/kyselyt", method = RequestMethod.GET)
     public @ResponseBody List<Kysely> kyselyLista() {
@@ -32,8 +34,8 @@ public class RestKyselyController {
 
     // ei toimi vielä, ei tiedä miksi
 /*      @RequestMapping(value = "kysely/{kyselynTekija}", method=RequestMethod.GET)
-    public @ResponseBody List<Kysely> getKyselyByMaker(@PathVariable("kyselynTekija") KyselynTekija kyselynTekija) {
-        return (kyselyRepository.findByKyselynTekija(kyselynTekija));
+            public @ResponseBody List<Kysely> getKyselyByMaker(@PathVariable("kyselynTekija") KyselynTekija kyselynTekija) {
+            return (kyselyRepository.findByKyselynTekija(kyselynTekija));
     }  */
 
     // Palauttaa yksittäisen (id) kyselyn

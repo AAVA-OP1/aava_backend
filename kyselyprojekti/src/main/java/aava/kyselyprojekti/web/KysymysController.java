@@ -47,7 +47,10 @@ public class KysymysController {
     }
 
 
-    // alla koodia, jossa olisi tarkoitus tehdä uusikysymys, ja "Tallenna" -napin painamisen jälkeen viedä käyttäjä takaisin kysely -sivulle, jossa ko. kyselyn voi tallentaa tai uuden kysymyksen lisätä
+    // alla koodia, jossa olisi tarkoitus tehdä uusikysymys, ja "Tallenna" -napin painamisen
+    // jälkeen viedä käyttäjä takaisin kysely -sivulle, jossa ko. kyselyn
+    // voi tallentaa tai uuden kysymyksen lisätä
+    // // AKUN LISÄYS: tähän pitäisi myös liittää kyselyntekijä
 
     // @RequestMapping(value = "/uusikysymys", method = RequestMethod.GET)
     // public String uusiKysymys(Model model) {
@@ -59,12 +62,13 @@ public class KysymysController {
     //     return "uusikysymys";
     // }
 
-    // @RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
-    // public String tallennaKysymys(Kysymys uusiKysymys, Model model) {
+     @RequestMapping(value = "/tallennakysymys", method = RequestMethod.POST)
+     public String tallennaKysymys(Kysymys uusiKysymys, Model model) {
 
-    //     kysymysRepository.save(uusiKysymys);
 
-    //     return "redirect:/tarkastelekyselya/{id}";
-    // }
+        kysymysRepository.save(uusiKysymys);
+
+        return "redirect:/uusikysymys";
+     }
 
 }

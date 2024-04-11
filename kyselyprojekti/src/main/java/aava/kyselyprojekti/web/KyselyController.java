@@ -1,6 +1,9 @@
 package aava.kyselyprojekti.web;
 
 
+import java.util.List;
+
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +56,17 @@ public class KyselyController {
     @RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
     public String tallennaKysely(Kysely uusiKysely, Model model) {
 
-        return "redirect:/index";
+
+        // TÄMÄ KESKEN AKULLA JA VALTTERILLA
+/*         List<Kysely> kyselyt = (List<Kysely>) kyselyRepository.findAll();
+        Long size = (long) kyselyt.size();
+        Optional<Kysely> kysely = kyselyRepository.findById(size);
+        if (kysely.isPresent()) {
+            kysely.setNimi(uusiKysely.getNimi());
+        } */
+
+
+        return "redirect:/uusikysymys";
     }
 
     @RequestMapping(value = "/tarkastelekyselya/{kysely}", method = RequestMethod.GET)

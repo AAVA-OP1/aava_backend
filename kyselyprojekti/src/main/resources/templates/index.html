@@ -30,7 +30,7 @@
             <th>Linkki kyselyyn</th>
           </tr>
           <tr th:each="kysely : ${kyselyt}">
-            <td th:text="${kysely.tekija}"></td>
+            <td th:text="${kysely.kyselynTekija}"></td>
             <!-- <td>"Linkki"</td> -->
             <!-- Linkki-toiminnallisuus ei vielä toimi -->
             <td><a th:href="@{'/tarkastelekyselya/' + ${kysely.kyselyid}}" class="btn btn-primary">Katso kysely</a></td>
@@ -38,7 +38,7 @@
         </table>
       </div>
 
-    <!-- Lisää kysely -nappi -->
+    <!-- Lisää kysely -nappi joka ohjaa uusikysymys-pohjaan -->
     <div class="container">
       <a th:href="@{/uusikysely}" class="btn btn-primary btn-lg btn-block">Lisää kysely</a>
     </div>

@@ -23,8 +23,7 @@ public class Vastaus {
     @JoinColumn(name = "kysymysid")
     private Kysymys kysymys;
 
-    public Vastaus(Long vastausid, String vastaus) {
-        this.vastausid = vastausid;
+    public Vastaus(String vastaus) {
         this.vastaus = vastaus;
     }
 

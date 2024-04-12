@@ -24,6 +24,7 @@
 
       <!-- Listaus aktiivisista kyselyistä -->
       <div class="container">
+        <h1>Kaikki kyselyt</h1>
         <table class="table table-striped">
           <tr>
             <th>Kyselyn nimi</th>
@@ -40,10 +41,20 @@
         </table>
       </div>
 
+      <!-- Vanha ratkaisu, poistetaanko? -->
     <!-- Lisää kysely -nappi joka ohjaa uusikysymys-pohjaan -->
-    <div class="container">
+<!--     <div class="container">
       <a th:href="@{/uusikysely}" class="btn btn-primary btn-lg btn-block">Lisää kysely</a>
-    </div>
+    </div> -->
+    
+    <div class="container">
+      <h1> Luo uusi kysely</h1>
+    <form action="/tallennakysely" th:object="${kysely}" method="POST">
+      <label for="nimi">Kyselyn nimi:</label>
+      <input type="text" id="nimi" name="nimi" required>
+      <button type="submit" class="btn btn-primary">Tallenna kysely (keksi kuvaavampi)</button>
+    </form>
+  </div>
 
 </body>
 </html>

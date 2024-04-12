@@ -74,6 +74,8 @@ public class KyselyController {
     public String tarkastelekyselya(@PathVariable("kysely") Kysely kysely, Model model) {
 
         model.addAttribute("kysymykset", kysymysRepository.findByKysely(kysely));
+        
+        model.addAttribute("kysely", kysely);
 
         return "tarkastelekyselya"; // .html
 

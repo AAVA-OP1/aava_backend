@@ -71,4 +71,15 @@ public class KysymysController {
         return "redirect:/uusikysymys";
      }
 
+
+
+     @RequestMapping(value = "/tallennakysymysmuokkauksessa", method = RequestMethod.POST)
+     public String tallennaKysymysMuokkauksessa(Kysymys uusiKysymys, Model model) {
+
+        kysymysRepository.save(uusiKysymys);
+
+        // Menee takaisin indexiin, eikä jää tarkastele sivulle...
+        return "redirect:/index";
+     }
+
 }

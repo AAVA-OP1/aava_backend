@@ -26,8 +26,6 @@
 
       <div class="container">
 
-
-
             <table class="table table-striped">
               <tr>
                 <th>Kysymys ID</th>
@@ -39,6 +37,17 @@
               </tr>
             </table>
 
+
+
+            <h2>Tallenna uusi Kysymys</h2>
+            <form action="/tallennakysymysmuokkauksessa" method="post" th:object="${kysymys}">
+                <label for="sisalto">Sisaltö:</label>
+                <input type="text" id="sisalto" name="sisalto" required size="29"><br><br>
+
+                <input type="hidden" id="kysely" name="kysely" th:value="${kysely.kyselyid}">
+                      
+                <button type="submit" class="btn btn-primary">Tallenna kysymys</button>
+            </form>
 
       </div>
 

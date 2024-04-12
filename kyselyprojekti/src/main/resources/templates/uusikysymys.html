@@ -29,14 +29,17 @@
   <div class="container">
 
 
+    <!-- Vanha ratkaisu, poistetaanko? -->
     <!-- Kysely Form ja tallennys -->
     <!-- <form action="#" th:action="@{/tallennakysely}" th:object="${kysely}" method="POST"> -->
-    <form action="/tallennakysely" th:object="${kysely}" method="POST">
+<!--     <form action="/tallennakysely" th:object="${kysely}" method="POST">
       <label for="nimi">Kyselyn nimi:</label>
       <input type="text" id="nimi" name="nimi" required>
       <button type="submit" class="btn btn-primary">Tallenna kysely</button>
-    </form>
-
+    </form> -->
+    <h1>
+      Kyselyn nimi: <span th:text="${linkitettyKysely.nimi}"></span>
+    </h1>
 
     <!-- Kysymys tallennys ja form -->
     <h2>Tallenna uusi Kysymys</h2>
@@ -53,22 +56,25 @@
     
 
 
-<!-- Listaus ihan hyvä, tee jatkossa että näyttää vain tämän kyselyn kysymykset, nyt näyttää kaikki -->
-    <!-- CONSOLE.loggaus -->
+<!-- Listaus ihan hyvä, näyttää nyt vain yhden kyselyn kysymykset -->
     <table class="table table-striped">
       <tr>
-        <th>Kyselyn sisältö</th>
-        <th>KYSELY</th>
+        <th>Kysymys</th>
+        <th>KYSELY (consoleLoggaus)</th>
+
       </tr>
       <tr th:each="kysymys : ${kysymykset}">
-        <td th:text="${kysymys.sisalto}"></td>
-        <td th:text="${kysymys.getKysely()}"></td>
+        <!-- IF lause katsoo listaan vain ne minkä id täsmää -->
+        <td th:if="${kysymys.getKysely().kyselyid == linkitettyKysely.kyselyid}" th:text="${kysymys.sisalto}"></td>
+        <td th:if="${kysymys.getKysely().kyselyid == linkitettyKysely.kyselyid}" th:text="${kysymys.getKysely()}"></td> 
       </tr>
     </table>
 
     <!-- Console loggaus vain -->
     <table>
       <td th:text="${linkitettyKysely}">
+        </th:text>
+      <td th:text="${linkitettyKysely.kyselyid}">
         </th:text>
     </table>
 

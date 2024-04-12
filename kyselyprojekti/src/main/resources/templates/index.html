@@ -46,12 +46,12 @@
 <!--     <div class="container">
       <a th:href="@{/uusikysely}" class="btn btn-primary btn-lg btn-block">Lisää kysely</a>
     </div> -->
-    
+
     <div class="container">
       <h1> Luo uusi kysely</h1>
     <form action="/tallennakysely" th:object="${kysely}" method="POST">
       <label for="nimi">Kyselyn nimi:</label>
-      <input type="text" id="nimi" name="nimi" required>
+      <input type="text" id="nimi" name="nimi" required> <!-- required, eli ei voi olla tyhjä -->
       <button type="submit" class="btn btn-primary">Tallenna kysely (keksi kuvaavampi)</button>
     </form>
   </div>

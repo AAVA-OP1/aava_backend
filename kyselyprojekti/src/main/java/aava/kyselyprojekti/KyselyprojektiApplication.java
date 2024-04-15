@@ -59,6 +59,9 @@ public class KyselyprojektiApplication {
 			Vastaus vastaus1 = new Vastaus("Moikkelismoi moi", kysymys4);
 			vastausRepository.save(vastaus1);
 
+			Vastaus vastaus2 = new Vastaus("kipeti kopoti", kysymys1);
+			vastausRepository.save(vastaus2);
+
 
 			// sisällöt näkyville terminaaliin loggerin avulla
 			for (Kysely kysely2 : kyselyRepository.findAll()) {

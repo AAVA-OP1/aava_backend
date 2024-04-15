@@ -21,6 +21,7 @@ public class Kysely {
     private long kyselyid;
 
     private String nimi;
+    private String kyselynKuvaus;
 
     // Relaatio
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "kysely")
@@ -32,17 +33,29 @@ public class Kysely {
     @JoinColumn(name = "tekijaid")
     private KyselynTekija kyselynTekija;
 
+
     public Kysely() {
         
     }
 
     // Konstruktori
-    public Kysely(KyselynTekija kyselynTekija, String nimi) {
+    public Kysely(KyselynTekija kyselynTekija, String nimi, String kyselynKuvaus) {
         this.kyselynTekija = kyselynTekija;
         this.nimi = nimi;
+        this.kyselynKuvaus = kyselynKuvaus;
     }
 
     // Getterit ja setterit
+
+    
+    public String getKyselynKuvaus() {
+        return kyselynKuvaus;
+    }
+
+    public void setKyselynKuvaus(String kyselynKuvaus) {
+        this.kyselynKuvaus = kyselynKuvaus;
+    }
+
     public long getKyselyid() {
         return kyselyid;
     }

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import aava.kyselyprojekti.domain.Kysely;
 import aava.kyselyprojekti.domain.KyselyRepository;
+import aava.kyselyprojekti.domain.KyselynTekija;
+import aava.kyselyprojekti.domain.KyselynTekijaRepository;
 import aava.kyselyprojekti.domain.KysymysRepository;
 
 @CrossOrigin
@@ -29,11 +31,15 @@ public class KyselyController {
     @Autowired
     private KysymysRepository kysymysRepository;
 
+    @Autowired
+    private KyselynTekijaRepository kyselynTekijaRepository;
+
     // aloitussivun endpoint
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String aloitusSivu(Model model) {
 
         model.addAttribute("kyselyt", kyselyRepository.findAll());
+        model.addAttribute("tekijat", kyselynTekijaRepository.findAll());
         return "index"; // .html
     }
 
@@ -56,17 +62,18 @@ public class KyselyController {
 
     // tallentaa kyselyn kyselyrepoon -> näkyy etusivulla
     @RequestMapping(value = "/tallennakysely", method = RequestMethod.POST)
-    public String tallennaKysely(@ModelAttribute("kysely") Kysely uusiKysely, @RequestParam("nimi") String nimi, Model model) {
-
-        // kysely uusikysely on juuri muodostettu kysely
-        // string nimi on syöttökentästä annettu nimi
-
-        // Uusikysymys sivulta, kyselyn nimi tulee tähän ja laittaa sen nimemksi muokattavalle kyselylle
+    public String tallennaKysely(@ModelAttribute("kysely") Kysely uusiKysely, @RequestParam("nimi") String nimi, @RequestParam("tekijaid") Long tekijaId,@RequestParam("kuvaus") String kuvaus, Model model) {
+        // Set the name for the new kysely
         uusiKysely.setNimi(nimi);
-
-        // tallenna muutettu kysely repoon
+        uusiKysely.setKyselynKuvaus(kuvaus);
+    
+        // Fetch the tekija object based on the ID and set it in the kysely
+        KyselynTekija tekija = kyselynTekijaRepository.findById(tekijaId).orElseThrow(() -> new RuntimeException("Tekijä not found with id: " + tekijaId));
+        uusiKysely.setKyselynTekija(tekija);
+    
+        // Save the modified kysely to the repository
         kyselyRepository.save(uusiKysely);
-
+    
         return "redirect:/uusikysymys";
     }
 
@@ -80,5 +87,7 @@ public class KyselyController {
         return "tarkastelekyselya"; // .html
 
     }
+
+     
 
 }

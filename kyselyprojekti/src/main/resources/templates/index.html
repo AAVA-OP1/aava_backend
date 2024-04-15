@@ -28,11 +28,13 @@
         <table class="table table-striped">
           <tr>
             <th>Kyselyn nimi</th>
+            <th>Kyselyn kuvaus</th>
             <th>Kyselyn tekijä</th>
             <th>Linkki kyselyyn</th>
           </tr>
           <tr th:each="kysely : ${kyselyt}">
             <td th:text="${kysely.nimi}"></td>
+            <td th:text="${kysely.kyselynKuvaus}"></td>
             <td th:text="${kysely.kyselynTekija}"></td>
             <!-- <td>"Linkki"</td> -->
             <!-- Linkki-toiminnallisuus ei vielä toimi -->
@@ -49,10 +51,21 @@
 
     <div class="container">
       <h1> Luo uusi kysely</h1>
-    <form action="/tallennakysely" th:object="${kysely}" method="POST">
-      <label for="nimi">Kyselyn nimi:</label>
-      <input type="text" id="nimi" name="nimi" required> <!-- required, eli ei voi olla tyhjä -->
-      <button type="submit" class="btn btn-primary">Tallenna kysely (keksi kuvaavampi)</button>
+      <form action="/tallennakysely" th:object="${kysely}" method="POST">
+        <label for="nimi">Kyselyn nimi:</label>
+        <input type="text" id="nimi" name="nimi" required> <!-- required, eli ei voi olla tyhjä -->
+
+        <label for="kuvaus">Kyselyn kuvaus:</label>
+        <input type="text" id="kuvaus" name="kuvaus"> 
+    
+        <label for="tekijat">Valitse tekijä:</label>
+        <select id="tekijat" name="tekijaid">
+            <option value="">Valitse tekijä</option>
+            <!-- Loop through the list of tekijat and create an option for each -->
+            <option th:each="tekija : ${tekijat}" th:value="${tekija.tekijaid}" th:text="${tekija.nimi}"></option>
+        </select>
+    
+        <button type="submit" class="btn btn-primary">Tallenna kysely (keksi kuvaavampi)</button>
     </form>
   </div>
 

@@ -35,7 +35,7 @@ public class KyselyprojektiApplication {
 			kTekijaRepository.save(t2);
 
 			// testikysely ja -kysymys
-			Kysely testikysely = new Kysely(t1, "Ensimmäinen testikysely");
+			Kysely testikysely = new Kysely(t1, "Ensimmäinen testikysely", "Tämän on testi kysely testaukseen");
 			kyselyRepository.save(testikysely);
 
 			Kysymys kysymys1 = new Kysymys("Mikä on lempikurssisi?", testikysely);
@@ -47,7 +47,7 @@ public class KyselyprojektiApplication {
 			Kysymys kysymys3 = new Kysymys("Milloin valmistut?", testikysely);
 			kysymysRepository.save(kysymys3);
 
-			Kysely testikysely2 = new Kysely(t2, "Toinen testikysely");
+			Kysely testikysely2 = new Kysely(t2, "Toinen testikysely", "Testi kuvaus testaukseen");
 			kyselyRepository.save(testikysely2);
 
 			Kysymys kysymys4 = new Kysymys("Mikä on lempiohjelmointikielesi?", testikysely2);

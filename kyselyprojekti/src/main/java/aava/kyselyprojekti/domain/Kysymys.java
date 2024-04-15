@@ -73,6 +73,14 @@ public class Kysymys {
         this.kysely = kysely;
     }
 
+    public List<Vastaus> getVastaukset() {
+        return vastaukset;
+    }
+
+    public void setVastaukset(List<Vastaus> vastaukset) {
+        this.vastaukset = vastaukset;
+    }
+
     
 
     

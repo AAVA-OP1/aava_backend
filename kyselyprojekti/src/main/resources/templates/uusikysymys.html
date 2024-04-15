@@ -41,6 +41,8 @@
       Kyselyn nimi: <span th:text="${linkitettyKysely.nimi}"></span>
     </h1>
 
+  
+
     <!-- Kysymys tallennys ja form -->
     <h2>Tallenna uusi Kysymys</h2>
     <form action="/tallennakysymys" method="post" th:object="${kysymys}">
@@ -75,6 +77,9 @@
       <td th:text="${linkitettyKysely}">
         </th:text>
       <td th:text="${linkitettyKysely.kyselyid}">
+        </th:text>
+
+        <td th:text="${linkitettyKysely.kyselynKuvaus}">
         </th:text>
     </table>
 

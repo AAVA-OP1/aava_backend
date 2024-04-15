@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import aava.kyselyprojekti.domain.Kysymys;
+import aava.kyselyprojekti.domain.KysymysRepository;
 import aava.kyselyprojekti.domain.Vastaus;
 import aava.kyselyprojekti.domain.VastausRepository;
 
@@ -19,24 +21,30 @@ public class RestVastausController {
     @Autowired
     private VastausRepository vastausRepository;
 
+    @Autowired
+    private KysymysRepository kysymysRepository;
 
     // IDEA TÄSSÄ:
-    // kovakoodata vain että tallentaa uuden vastauksen. Sitten kun se toimii niin sitten vasta lähettää
+    // kovakoodata vain että tallentaa uuden vastauksen. Sitten kun se toimii niin
+    // sitten vasta lähettää
     // frontista Vastaus-objekti ja se tallentaa.
 
-    // RESTful metodi tallentamaan uusi kysymys
-/*     @RequestMapping(value="/uusivastaus", method = RequestMethod.POST)
-    /* public @ResponseBody Kysymys saveVastausRest(@RequestBody Kysymys kysymys) { 
-    public void saveVastausRest() {
-        Vastaus testiVastaus = new Vastaus("Hellou");
-         vastausRepository.save(testiVastaus);
- } */
+    // Tallennus POST toimii. Jos lähettää POSTMAN niin uusi vastaus tallentuu repoon.
+    // Seuraavaksi FRONTISTA tulisi lähettää dataa ja käsitellä se täällä ja tallentaa
 
-     // palauttaa kaikki vastaukset
-     @RequestMapping(value = "/vastaukset", method = RequestMethod.GET)
-     public @ResponseBody List<Vastaus> vastausLista() {
- 
-         return (List<Vastaus>) vastausRepository.findAll();
-     }
+    // RESTful metodi tallentamaan uusi kysymys
+    @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST)
+    public void saveVastausRest() {
+        List<Kysymys> kLista = (List<Kysymys>) kysymysRepository.findAll();
+        Vastaus testiVastaus = new Vastaus("hahaha", kLista.get(1));
+        vastausRepository.save(testiVastaus);
+    }
+
+    // palauttaa kaikki vastaukset
+    @RequestMapping(value = "/vastaukset", method = RequestMethod.GET)
+    public @ResponseBody List<Vastaus> vastausLista() {
+
+        return (List<Vastaus>) vastausRepository.findAll();
+    }
 
 }

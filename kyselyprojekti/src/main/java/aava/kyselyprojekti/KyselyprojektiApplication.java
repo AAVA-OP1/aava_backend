@@ -13,6 +13,8 @@ import aava.kyselyprojekti.domain.KyselynTekija;
 import aava.kyselyprojekti.domain.KyselynTekijaRepository;
 import aava.kyselyprojekti.domain.Kysymys;
 import aava.kyselyprojekti.domain.KysymysRepository;
+import aava.kyselyprojekti.domain.Vastaus;
+import aava.kyselyprojekti.domain.VastausRepository;
 
 @SpringBootApplication
 public class KyselyprojektiApplication {
@@ -23,7 +25,7 @@ public class KyselyprojektiApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(KyselyRepository kyselyRepository, KysymysRepository kysymysRepository, KyselynTekijaRepository kTekijaRepository) {
+	public CommandLineRunner demo(KyselyRepository kyselyRepository, KysymysRepository kysymysRepository, KyselynTekijaRepository kTekijaRepository, VastausRepository vastausRepository) {
 		return (args) -> {
 
 			KyselynTekija t1 = new KyselynTekija("Alina");
@@ -53,6 +55,9 @@ public class KyselyprojektiApplication {
 
 			Kysymys kysymys5 = new Kysymys("Miksi valitsit juuri tämän tutkinnon?", testikysely2);
 			kysymysRepository.save(kysymys5);
+
+			Vastaus vastaus1 = new Vastaus("Moikkelismoi moi", kysymys4);
+			vastausRepository.save(vastaus1);
 
 
 			// sisällöt näkyville terminaaliin loggerin avulla

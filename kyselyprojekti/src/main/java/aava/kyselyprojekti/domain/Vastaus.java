@@ -23,8 +23,9 @@ public class Vastaus {
     @JoinColumn(name = "kysymysid")
     private Kysymys kysymys;
 
-    public Vastaus(String vastaus) {
+    public Vastaus(String vastaus, Kysymys kysymys) {
         this.vastaus = vastaus;
+        this.kysymys = kysymys;
     }
 
     public Vastaus() {
@@ -57,7 +58,7 @@ public class Vastaus {
 
     @Override
     public String toString() {
-        return "Vastaus [vastausid=" + vastausid + ", vastaus=" + vastaus + ", kysymys=" + kysymys + "]";
+        return "Vastaus [vastausid=" + vastausid + ", vastaus=" + vastaus + "]";
     }
 
 }

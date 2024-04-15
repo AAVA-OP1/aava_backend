@@ -41,6 +41,7 @@ public class Kysymys {
     public Kysymys(String sisalto, Kysely kysely) {
         this.sisalto = sisalto;
         this.kysely = kysely;
+        
     }
 
     public long getKysymysid() {

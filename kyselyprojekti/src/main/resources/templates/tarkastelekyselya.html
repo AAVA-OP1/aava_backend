@@ -25,14 +25,14 @@
       <!-- TEKSTI -->
 
       <div class="container">
-
+        <h1><span th:text="${kysely.nimi}"></span>  kysymykset:</h1>
             <table class="table table-striped">
               <tr>
-                <th>Kysymys ID</th>
+                <!-- <th>Kysymys ID</th> -->
                 <th>Kysymyksen sisältö</th>
               </tr>
               <tr th:each="kysymys : ${kysymykset}">
-                <td th:text="${kysymys.kysymysid}"></td>
+                <!-- <td th:text="${kysymys.kysymysid}"></td> -->
                 <td th:text="${kysymys.sisalto}"></td>
               </tr>
             </table>

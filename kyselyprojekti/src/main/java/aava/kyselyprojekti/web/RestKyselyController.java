@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import aava.kyselyprojekti.domain.Kysely;
 import aava.kyselyprojekti.domain.KyselyRepository;
+import aava.kyselyprojekti.domain.KyselynTekija;
 import aava.kyselyprojekti.domain.KysymysRepository;
 import aava.kyselyprojekti.domain.VastausRepository;
 
@@ -32,11 +33,12 @@ public class RestKyselyController {
         return (List<Kysely>) kyselyRepository.findAll();
     }
 
-    // ei toimi vielä, ei tiedä miksi
-/*      @RequestMapping(value = "kysely/{kyselynTekija}", method=RequestMethod.GET)
-            public @ResponseBody List<Kysely> getKyselyByMaker(@PathVariable("kyselynTekija") KyselynTekija kyselynTekija) {
+    // toimii, kyselynTekija haetaan id:lla esim 1
+    @RequestMapping(value = "kysely/tekija/{kyselynTekija}", method = RequestMethod.GET)
+            public @ResponseBody Optional<Kysely> getKyselyByMaker(@PathVariable("kyselynTekija") KyselynTekija kyselynTekija) {
             return (kyselyRepository.findByKyselynTekija(kyselynTekija));
-    }  */
+
+    }  
 
     // Palauttaa yksittäisen (id) kyselyn
     @RequestMapping(value = "kysely/{id}", method=RequestMethod.GET)

@@ -13,6 +13,7 @@ import aava.kyselyprojekti.domain.KyselynTekija;
 import aava.kyselyprojekti.domain.KyselynTekijaRepository;
 import aava.kyselyprojekti.domain.Kysymys;
 import aava.kyselyprojekti.domain.KysymysRepository;
+import aava.kyselyprojekti.domain.PelkatKysymysetRepository;
 import aava.kyselyprojekti.domain.Vastaus;
 import aava.kyselyprojekti.domain.VastausRepository;
 
@@ -25,7 +26,7 @@ public class KyselyprojektiApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(KyselyRepository kyselyRepository, KysymysRepository kysymysRepository, KyselynTekijaRepository kTekijaRepository, VastausRepository vastausRepository) {
+	public CommandLineRunner demo(KyselyRepository kyselyRepository, KysymysRepository kysymysRepository, KyselynTekijaRepository kTekijaRepository, VastausRepository vastausRepository, PelkatKysymysetRepository pelkatKysymysetRepository) {
 		return (args) -> {
 
 			KyselynTekija t1 = new KyselynTekija("Alina");
@@ -40,9 +41,12 @@ public class KyselyprojektiApplication {
 
 			Kysymys kysymys1 = new Kysymys("Mikä on lempikurssisi?", testikysely);
 			kysymysRepository.save(kysymys1);
+			/* pelkatKysymysetRepository.save(kysymys1); */
+ 
 
 			Kysymys kysymys2 = new Kysymys("Mikä on haaveammattisi?", testikysely);
 			kysymysRepository.save(kysymys2);
+
 
 			Kysymys kysymys3 = new Kysymys("Milloin valmistut?", testikysely);
 			kysymysRepository.save(kysymys3);

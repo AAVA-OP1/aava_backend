@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +17,7 @@ import aava.kyselyprojekti.domain.PelkatVastaukset;
 import aava.kyselyprojekti.domain.PelkatVastauksetRepository;
 import aava.kyselyprojekti.domain.Vastaus;
 import aava.kyselyprojekti.domain.VastausRepository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @CrossOrigin
 @RestController
@@ -35,14 +37,26 @@ public class RestVastausController {
     // sitten vasta lähettää
     // frontista Vastaus-objekti ja se tallentaa.
 
-    // Tallennus POST toimii. Jos lähettää POSTMAN niin uusi vastaus tallentuu repoon.
-    // Seuraavaksi FRONTISTA tulisi lähettää dataa ja käsitellä se täällä ja tallentaa
+    // Tallennus POST toimii. Jos lähettää POSTMAN niin uusi vastaus tallentuu
+    // repoon.
+    // Seuraavaksi FRONTISTA tulisi lähettää dataa ja käsitellä se täällä ja
+    // tallentaa
 
     // RESTful metodi tallentamaan uusi kysymys
-    @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST)
+
+    // palauttaa vastukset frontista
+    // @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST)
+    // public void saveVastausRest() {
+    // List<Kysymys> kLista = (List<Kysymys>) kysymysRepository.findAll();
+    // Vastaus testiVastaus = new Vastaus("hahaha", kLista.get(1));
+    // vastausRepository.save(testiVastaus);
+    // }
+
+    @PostMapping(value = "/uusivastaus")
     public void saveVastausRest() {
         List<Kysymys> kLista = (List<Kysymys>) kysymysRepository.findAll();
-        Vastaus testiVastaus = new Vastaus("hahaha", kLista.get(1));
+        Vastaus testiVastaus = new Vastaus();
+        testiVastaus.getVastaus();
         vastausRepository.save(testiVastaus);
     }
 
@@ -52,7 +66,6 @@ public class RestVastausController {
 
         return (List<Vastaus>) vastausRepository.findAll();
     }
-
 
     // palauttaa pelkät vastukset
 
@@ -66,14 +79,7 @@ public class RestVastausController {
             var linkitettyKysely = new Kysely(); // ei toimi viel
             pelkatVastaukset.setVastaus(vas.getVastaus());
 
-
-            
-        
-
-           pelkatVastauksetRepository.save(pelkatVastaukset);
-            
-
-            
+            pelkatVastauksetRepository.save(pelkatVastaukset);
 
         }
         return (List<PelkatVastaukset>) pelkatVastauksetRepository.findAll();

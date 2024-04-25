@@ -1,10 +1,13 @@
 package aava.kyselyprojekti.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import aava.kyselyprojekti.domain.Kysely;
 import aava.kyselyprojekti.domain.Kysymys;
 import aava.kyselyprojekti.domain.KysymysRepository;
+import aava.kyselyprojekti.domain.PelkatKysymysetRepository;
 import aava.kyselyprojekti.domain.PelkatVastaukset;
 import aava.kyselyprojekti.domain.PelkatVastauksetRepository;
 import aava.kyselyprojekti.domain.Vastaus;
@@ -32,6 +36,9 @@ public class RestVastausController {
     @Autowired
     private PelkatVastauksetRepository pelkatVastauksetRepository;
 
+    @Autowired
+    private PelkatKysymysetRepository pelkatKysymysetRepository;
+
     // IDEA TÄSSÄ:
     // kovakoodata vain että tallentaa uuden vastauksen. Sitten kun se toimii niin
     // sitten vasta lähettää
@@ -45,20 +52,44 @@ public class RestVastausController {
     // RESTful metodi tallentamaan uusi kysymys
 
     // palauttaa vastukset frontista
-    // @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST)
-    // public void saveVastausRest() {
-    // List<Kysymys> kLista = (List<Kysymys>) kysymysRepository.findAll();
-    // Vastaus testiVastaus = new Vastaus("hahaha", kLista.get(1));
-    // vastausRepository.save(testiVastaus);
-    // }
+   /*   @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST)
+     public void saveVastausRest(Vastaus tallennettuVastaus, Model Model) {
 
-    @PostMapping(value = "/uusivastaus")
-    public void saveVastausRest() {
-        List<Kysymys> kLista = (List<Kysymys>) kysymysRepository.findAll();
-        Vastaus testiVastaus = new Vastaus();
-        testiVastaus.getVastaus();
-        vastausRepository.save(testiVastaus);
+
+     List<Kysymys> kLista = (List<Kysymys>) kysymysRepository.findAll();
+    
+     vastausRepository.save(tallennettuVastaus);
+     }  */
+
+
+    /*  Vastaus testiVastaus = new Vastaus("hahaha", kLista.get(1)); */
+
+    @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST) // TOimii postmanin kautta kun lisää key (kysymysid ja vastauksen sisältö ja valuet näille! )
+    public void saveVastausRest(@RequestParam("kysymysid") List<Long> kysymysid,
+                                @RequestParam("vastauksensisalto") List<String> vastauksensisalto) {
+
+        Optional<Kysymys> kysymys1 = kysymysRepository.findById(kysymysid.get(0));
+
+        if (kysymys1.isPresent()){
+
+            Kysymys kysymys = kysymys1.get();
+            Vastaus vastaus = new Vastaus(vastauksensisalto.get(0), kysymys);
+            vastausRepository.save(vastaus);
+        }
+
+
+        
+        
+        // Käsittele vastaanotetut kysymysid:t ja vastaukset tässä
     }
+    
+
+
+
+  
+
+    
+   
 
     // palauttaa kaikki vastaukset (palauttaa myös kysymykset)
     @RequestMapping(value = "/vastaukset", method = RequestMethod.GET)

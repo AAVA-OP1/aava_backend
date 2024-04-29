@@ -20,6 +20,8 @@ import aava.kyselyprojekti.domain.PelkatKysymysetRepository;
 import aava.kyselyprojekti.domain.PelkatVastaukset;
 import aava.kyselyprojekti.domain.PelkatVastauksetRepository;
 import aava.kyselyprojekti.domain.Vastaus;
+import aava.kyselyprojekti.domain.VastausDTO;
+import aava.kyselyprojekti.domain.VastausDTORepository;
 import aava.kyselyprojekti.domain.VastausRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,6 +40,8 @@ public class RestVastausController {
 
     @Autowired
     private PelkatKysymysetRepository pelkatKysymysetRepository;
+
+
 
     // IDEA TÄSSÄ:
     // kovakoodata vain että tallentaa uuden vastauksen. Sitten kun se toimii niin
@@ -84,11 +88,16 @@ public class RestVastausController {
         // Käsittele vastaanotetut kysymysid:t ja vastaukset tässä
     }  ALEMPANA UUSI PÄIVITETTY VERSIO; JOKA näyttää kaikki*/ 
 
-    @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST)
+  /*  Lähimpänä toimiva @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST)
 public void saveVastausRest(@RequestParam("kysymysid") List<Long> kysymysid,
                             @RequestParam("vastauksensisalto") List<String> vastauksensisalto) {
 
-    // Check if both lists have the same size
+                                //Requestbody muuntaa json java olioksi
+
+    
+    
+
+    // Tarkistetaan et molemmilla listoilla sama koko
     if (kysymysid.size() == vastauksensisalto.size()) {
         for (int i = 0; i < kysymysid.size(); i++) {
             Long kysymysId = kysymysid.get(i);
@@ -100,15 +109,29 @@ public void saveVastausRest(@RequestParam("kysymysid") List<Long> kysymysid,
                 Vastaus vastaus = new Vastaus(vastauksenSisalto, kysymys);
                 vastausRepository.save(vastaus);
             } else {
-                // Handle the case when Kysymys with the provided ID is not found
-                // You can log an error or handle it according to your application's requirements
+                //jos id ei löydy 
             }
         }
     } else {
-        // Handle the case when the size of kysymysid and vastauksensisalto lists do not match
-        // You can throw an exception or handle it according to your application's requirements
+        // jos kysymysid ja vastauksensisalto koko ei matchaa
     }
-}
+} */
+
+
+@RequestMapping(value="/uusivastaus", method = RequestMethod.POST)
+    public void saveStudentRest (@RequestBody List<VastausDTO> vastausDTO) {
+    
+    for (int i = 0; i < vastausDTO.size(); i ++) {
+        Vastaus vastaus = new Vastaus();
+        vastaus.setVastaus(vastausDTO.get(i).getVastauksensisalto());
+
+        /* vastaus.setKysymys(vastausDTO.get(i).getKysymysid());
+ */
+
+        vastausRepository.save(vastaus);
+    }
+   
+    }
  
     
 

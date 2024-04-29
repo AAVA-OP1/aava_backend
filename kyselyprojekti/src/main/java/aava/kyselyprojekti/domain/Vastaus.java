@@ -52,7 +52,7 @@ public class Vastaus {
         return kysymys;
     }
 
-    public void setKysely(Kysymys kysymys) {
+    public void setKysymys(Kysymys kysymys) {
         this.kysymys = kysymys;
     }
 

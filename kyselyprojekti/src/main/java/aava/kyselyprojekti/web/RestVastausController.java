@@ -43,79 +43,8 @@ public class RestVastausController {
 
 
 
-    // IDEA TÄSSÄ:
-    // kovakoodata vain että tallentaa uuden vastauksen. Sitten kun se toimii niin
-    // sitten vasta lähettää
-    // frontista Vastaus-objekti ja se tallentaa.
 
-    // Tallennus POST toimii. Jos lähettää POSTMAN niin uusi vastaus tallentuu
-    // repoon.
-    // Seuraavaksi FRONTISTA tulisi lähettää dataa ja käsitellä se täällä ja
-    // tallentaa
-
-    // RESTful metodi tallentamaan uusi kysymys
-
-    // palauttaa vastukset frontista
-   /*   @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST)
-     public void saveVastausRest(Vastaus tallennettuVastaus, Model Model) {
-
-
-     List<Kysymys> kLista = (List<Kysymys>) kysymysRepository.findAll();
-    
-     vastausRepository.save(tallennettuVastaus);
-     }  */
-
-
-    /*  Vastaus testiVastaus = new Vastaus("hahaha", kLista.get(1)); */
-
-  /*   @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST) // TOimii postmanin kautta kun lisää key (kysymysid ja vastauksen sisältö ja valuet näille! )
-    public void saveVastausRest(@RequestParam("kysymysid") List<Long> kysymysid,
-                                @RequestParam("vastauksensisalto") List<String> vastauksensisalto) {
-
-        Optional<Kysymys> kysymys1 = kysymysRepository.findById(kysymysid.get(0));
-
-        if (kysymys1.isPresent()){
-
-            
-            Kysymys kysymys = kysymys1.get();
-            Vastaus vastaus = new Vastaus(vastauksensisalto.get(0), kysymys);
-            vastausRepository.save(vastaus);
-        }
-
-
-        
-        
-        // Käsittele vastaanotetut kysymysid:t ja vastaukset tässä
-    }  ALEMPANA UUSI PÄIVITETTY VERSIO; JOKA näyttää kaikki*/ 
-
-  /*  Lähimpänä toimiva @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST)
-public void saveVastausRest(@RequestParam("kysymysid") List<Long> kysymysid,
-                            @RequestParam("vastauksensisalto") List<String> vastauksensisalto) {
-
-                                //Requestbody muuntaa json java olioksi
-
-    
-    
-
-    // Tarkistetaan et molemmilla listoilla sama koko
-    if (kysymysid.size() == vastauksensisalto.size()) {
-        for (int i = 0; i < kysymysid.size(); i++) {
-            Long kysymysId = kysymysid.get(i);
-            String vastauksenSisalto = vastauksensisalto.get(i);
-
-            Optional<Kysymys> kysymysOptional = kysymysRepository.findById(kysymysId);
-            if (kysymysOptional.isPresent()) {
-                Kysymys kysymys = kysymysOptional.get();
-                Vastaus vastaus = new Vastaus(vastauksenSisalto, kysymys);
-                vastausRepository.save(vastaus);
-            } else {
-                //jos id ei löydy 
-            }
-        }
-    } else {
-        // jos kysymysid ja vastauksensisalto koko ei matchaa
-    }
-} */
+   
 
 
 @RequestMapping(value="/uusivastaus", method = RequestMethod.POST)
@@ -125,11 +54,19 @@ public void saveVastausRest(@RequestParam("kysymysid") List<Long> kysymysid,
         Vastaus vastaus = new Vastaus();
         vastaus.setVastaus(vastausDTO.get(i).getVastauksensisalto());
 
-        /* vastaus.setKysymys(vastausDTO.get(i).getKysymysid());
- */
+        Optional<Kysymys> kysymysOptional = kysymysRepository.findById(vastausDTO.get(i).getKysymysid());
+        if (kysymysOptional.isPresent()) {
+            Kysymys kysymys = kysymysOptional.get();
+            vastaus.setKysymys(kysymys);
+            
+
+
+ 
 
         vastausRepository.save(vastaus);
+        
     }
+}
    
     }
  

@@ -64,7 +64,7 @@ public class RestVastausController {
 
     /*  Vastaus testiVastaus = new Vastaus("hahaha", kLista.get(1)); */
 
-    @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST) // TOimii postmanin kautta kun lisää key (kysymysid ja vastauksen sisältö ja valuet näille! )
+  /*   @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST) // TOimii postmanin kautta kun lisää key (kysymysid ja vastauksen sisältö ja valuet näille! )
     public void saveVastausRest(@RequestParam("kysymysid") List<Long> kysymysid,
                                 @RequestParam("vastauksensisalto") List<String> vastauksensisalto) {
 
@@ -72,6 +72,7 @@ public class RestVastausController {
 
         if (kysymys1.isPresent()){
 
+            
             Kysymys kysymys = kysymys1.get();
             Vastaus vastaus = new Vastaus(vastauksensisalto.get(0), kysymys);
             vastausRepository.save(vastaus);
@@ -81,7 +82,34 @@ public class RestVastausController {
         
         
         // Käsittele vastaanotetut kysymysid:t ja vastaukset tässä
+    }  ALEMPANA UUSI PÄIVITETTY VERSIO; JOKA näyttää kaikki*/ 
+
+    @RequestMapping(value = "/uusivastaus", method = RequestMethod.POST)
+public void saveVastausRest(@RequestParam("kysymysid") List<Long> kysymysid,
+                            @RequestParam("vastauksensisalto") List<String> vastauksensisalto) {
+
+    // Check if both lists have the same size
+    if (kysymysid.size() == vastauksensisalto.size()) {
+        for (int i = 0; i < kysymysid.size(); i++) {
+            Long kysymysId = kysymysid.get(i);
+            String vastauksenSisalto = vastauksensisalto.get(i);
+
+            Optional<Kysymys> kysymysOptional = kysymysRepository.findById(kysymysId);
+            if (kysymysOptional.isPresent()) {
+                Kysymys kysymys = kysymysOptional.get();
+                Vastaus vastaus = new Vastaus(vastauksenSisalto, kysymys);
+                vastausRepository.save(vastaus);
+            } else {
+                // Handle the case when Kysymys with the provided ID is not found
+                // You can log an error or handle it according to your application's requirements
+            }
+        }
+    } else {
+        // Handle the case when the size of kysymysid and vastauksensisalto lists do not match
+        // You can throw an exception or handle it according to your application's requirements
     }
+}
+ 
     
 
 

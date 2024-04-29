@@ -21,7 +21,6 @@ import aava.kyselyprojekti.domain.PelkatVastaukset;
 import aava.kyselyprojekti.domain.PelkatVastauksetRepository;
 import aava.kyselyprojekti.domain.Vastaus;
 import aava.kyselyprojekti.domain.VastausDTO;
-import aava.kyselyprojekti.domain.VastausDTORepository;
 import aava.kyselyprojekti.domain.VastausRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 

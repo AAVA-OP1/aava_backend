@@ -35,6 +35,12 @@ public class KyselyprojektiApplication {
 			KyselynTekija t2 = new KyselynTekija("Aku");
 			kTekijaRepository.save(t2);
 
+			KyselynTekija t3 = new KyselynTekija("Anastasia");
+			kTekijaRepository.save(t3);
+
+			KyselynTekija t4 = new KyselynTekija("Valtteri");
+			kTekijaRepository.save(t4);
+
 			// testikysely ja -kysymys
 			Kysely testikysely = new Kysely(t1, "Ensimmäinen testikysely", "Tämän on testi kysely testaukseen");
 			kyselyRepository.save(testikysely);
@@ -63,8 +69,11 @@ public class KyselyprojektiApplication {
 			Vastaus vastaus1 = new Vastaus("Moikkelismoi moi", kysymys4);
 			vastausRepository.save(vastaus1);
 
-			Vastaus vastaus2 = new Vastaus("kipeti kopoti", kysymys1);
+			Vastaus vastaus2 = new Vastaus("jfilesjflisjfisjslifjiesjflijeslifjesfeslijifsjiljl", kysymys1);
 			vastausRepository.save(vastaus2);
+
+			Vastaus vastaus3 = new Vastaus("moimoimoi", kysymys2);
+			vastausRepository.save(vastaus3);
 
 
 			// sisällöt näkyville terminaaliin loggerin avulla

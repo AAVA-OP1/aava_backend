@@ -1,76 +1,118 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
-    <title>Kyselyt</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+  <title>Kyselyt</title>
 </head>
+
 <body>
-    <!-- aloitussivu -->
+  <!-- aloitussivu -->
 
 
-    <h1>Kysely by id</h1>
+  <h1>Kysely by id</h1>
 
-    <h2>Method: GET endpoint: /kysely{id} /kysely/1</h2>
+  <h2>Method: GET endpoint: /kysely{id} /kysely/1</h2>
 
-    <h3>JSON example:  </h3><br> 
+  <h3>JSON example: </h3><br>
 
-        
 
-{ <br>
+
+  <br>
   "kyselyid": 1, <br>
   "nimi": "Ensimmäinen testikysely", <br>
   "kyselynKuvaus": "Tämän on testi kysely testaukseen", <br>
   "kysymykset": [ <br>
+  { <br>
+  "kysymysid": 1, <br>
+  "sisalto": "Mikä on lempikurssisi?", <br>
+  "vastaukset": [ <br>
+  { <br>
+  "vastausid": 2, <br>
+  "vastaus": "kipeti kopoti" <br>
+  } <br>
+  ] <br>
+  },
+
+
+  <h1>Uusi vastaus</h1>
+
+  <h2>POST /uusivastaus (Test with PostMan/etc)</h2>
+
+  <h3>JSON Example:</h3>
+
+  <p>
     { <br>
-      "kysymysid": 1, <br>
-      "sisalto": "Mikä on lempikurssisi?", <br>
-      "vastaukset": [ <br>
-        { <br>
-          "vastausid": 2, <br>
-          "vastaus": "kipeti kopoti" <br>
-        } <br>
-      ] <br>
-    },
+    "kysymysid": 1, <br>
+    "vastauksensisalto": vastauksensisalto <br>
+    } <br>
+  </p>
 
-
-    <h1>Uusi vastaus</h1>
-
-    <h2>POST /uusivastaus (Test with PostMan/etc)</h2>
-
-    <h3>JSON Example:</h3>
-
-    <p>
-        { <br>
-            "kysymysid": 1, <br>
-            "vastauksensisalto": vastauksensisalto <br>
-        } <br>
-    </p>
-
-    <h2>Method: GET Endpoint: /vainKysymykset</h2> <br>
-    <h3>JSON example</h3>
-    <p>
-         <br>
-        [ <br>
-  {
+  <h2>Method: GET Endpoint: /vainKysymykset</h2> <br>
+  <h3>JSON example</h3>
+  <p>
+    <br>
+    [ <br>
+    {
     "kysymysid": 1, <br>
     "sisalto": "Mikä on lempikurssisi?" <br>
-  }, <br>
-  {
+    }, <br>
+    {
     "kysymysid": 2, <br>
     "sisalto": "Mikä on haaveammattisi?" <br>
-  } <br>
-  ]
-    </p>
+    } <br>
+    ]
+  </p>
 
-   
-    <!-- HEADER -->
-    <div class="container">
-  
+  <h1>Kyselyt</h1>
+  <h2>Method: GET endpoint: /kyselyt</h2>
+  <h3>JSON example</h3>
+
+  <p>
+    [ <br>
+    { <br>
+    "kyselyid":1, <br>
+    "nimi":"Ensimmäinen testikysely", <br>
+    "kyselynKuvaus":"Tämän on testi kysely testaukseen", <br>
+    "kysymykset":[ <br>
+    { <br>
+    "kysymysid":1, <br>
+    "sisalto":"Mikä on lempikurssisi?", <br>
+    "vastaukset":[ <br>
+    { <br>
+    "vastausid":2, <br>
+    "vastaus":"kipeti kopoti" <br>
+    } <br>
+    ] <br>
+    }, <br>
+    { <br>
+    "kysymysid":2, <br>
+    "sisalto":"Mikä on haaveammattisi?", <br>
+    "vastaukset":[ <br>
+    ] <br>
+    }, <br>
+    { <br>
+    "kysymysid":3, <br>
+    "sisalto":"Milloin valmistut?", <br>
+    "vastaukset":[ <br>
+    ] <br>
+    } <br>
+    ], <br>
+    "kyselynTekija":{"tekijaid":1, <br>
+    "nimi":"Alina" <br>
+    } <br>
+    } <br>
+  </p>
+
+
+  <!-- HEADER -->
+  <div class="container">
+
   </div>
 
 </body>
-</html>
 
+</html>

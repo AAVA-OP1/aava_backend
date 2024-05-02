@@ -60,11 +60,23 @@ public class KyselyprojektiApplication {
 			Kysely testikysely2 = new Kysely(t2, "Toinen testikysely", "Testi kuvaus testaukseen");
 			kyselyRepository.save(testikysely2);
 
+			Kysely testikysely3 = new Kysely(t3, "Kolmas testikysely", "Testi kuvaus testaukseen");
+			kyselyRepository.save(testikysely3);
+
+			Kysely testikysely4 = new Kysely(t4, "Kysely kouluruuasta", "Onko kouluruoka maittavaa?");
+			kyselyRepository.save(testikysely4);
+
 			Kysymys kysymys4 = new Kysymys("Mikä on lempiohjelmointikielesi?", testikysely2);
 			kysymysRepository.save(kysymys4);
 
 			Kysymys kysymys5 = new Kysymys("Miksi valitsit juuri tämän tutkinnon?", testikysely2);
 			kysymysRepository.save(kysymys5);
+
+			Kysymys kysymys6 = new Kysymys("Miten menee tänään?", testikysely3);
+			kysymysRepository.save(kysymys6);
+
+			Kysymys kysymys7 = new Kysymys("Miksi syöt juuri tätä ruokaa?", testikysely4);
+			kysymysRepository.save(kysymys7);
 
 			Vastaus vastaus1 = new Vastaus("Moikkelismoi moi", kysymys4);
 			vastausRepository.save(vastaus1);

@@ -44,7 +44,7 @@ public class RestVastausController {
 
 
    
-
+// vastauksen lähetys React puolelta.
 
 @RequestMapping(value="/uusivastaus", method = RequestMethod.POST)
     public void saveStudentRest (@RequestBody List<VastausDTO> vastausDTO) {

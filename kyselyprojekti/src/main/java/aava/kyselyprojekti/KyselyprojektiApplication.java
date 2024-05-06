@@ -136,6 +136,22 @@ public class KyselyprojektiApplication {
 			Vastaus v14 = new Vastaus("En muista", k7);
 			vastausRepository.save(v14);
 
+
+			Vastaus v15 = new Vastaus("Olen kolmannen vuoden opiskelija", k1);
+			vastausRepository.save(v15);
+			Vastaus v16 = new Vastaus("Opiskelen monimuodossa", k2);
+			vastausRepository.save(v16);
+			Vastaus v17 = new Vastaus("Tietojenkäsittely", k3);
+			vastausRepository.save(v17);
+			Vastaus v18 = new Vastaus("Kivointa on opiskelu kaverit", k4);
+			vastausRepository.save(v18);
+			Vastaus v19 = new Vastaus("Pepin käyttö", k5);
+			vastausRepository.save(v19);
+			Vastaus v20 = new Vastaus("Olen onnistunut melko hyvin", k6);
+			vastausRepository.save(v20);
+			Vastaus v21 = new Vastaus("Olen suorittanut 100 opintopistettä", k7);
+			vastausRepository.save(v21);
+
 			// sisällöt näkyville terminaaliin loggerin avulla
 			for (Kysely kysely2 : kyselyRepository.findAll()) {
 				logger.info(kysely2.toString());

@@ -26,7 +26,9 @@ public class KyselyprojektiApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(KyselyRepository kyselyRepository, KysymysRepository kysymysRepository, KyselynTekijaRepository kTekijaRepository, VastausRepository vastausRepository, PelkatKysymysetRepository pelkatKysymysetRepository) {
+	public CommandLineRunner demo(KyselyRepository kyselyRepository, KysymysRepository kysymysRepository,
+			KyselynTekijaRepository kTekijaRepository, VastausRepository vastausRepository,
+			PelkatKysymysetRepository pelkatKysymysetRepository) {
 		return (args) -> {
 
 			KyselynTekija t1 = new KyselynTekija("Alina");
@@ -48,16 +50,12 @@ public class KyselyprojektiApplication {
 			Kysymys kysymys1 = new Kysymys("Mikä on lempikurssisi?", testikysely);
 			kysymysRepository.save(kysymys1);
 			/* pelkatKysymysetRepository.save(kysymys1); */
- 
 
 			Kysymys kysymys2 = new Kysymys("Mikä on haaveammattisi?", testikysely);
 			kysymysRepository.save(kysymys2);
 
-
 			Kysymys kysymys3 = new Kysymys("Milloin valmistut?", testikysely);
 			kysymysRepository.save(kysymys3);
-
-			
 
 			Kysely testikysely2 = new Kysely(t2, "Toinen testikysely", "Testi kuvaus testaukseen");
 			kyselyRepository.save(testikysely2);
@@ -89,7 +87,8 @@ public class KyselyprojektiApplication {
 			Vastaus vastaus3 = new Vastaus("moimoimoi", kysymys2);
 			vastausRepository.save(vastaus3);
 
-			Kysely koulukysely = new Kysely(t1, "Opiskeluajatusten kartoituskysely", "Opiskelijoiden yleisiä näkemyksiä opiskelusta");
+			Kysely koulukysely = new Kysely(t1, "Opiskeluajatusten kartoituskysely",
+					"Opiskelijoiden yleisiä näkemyksiä opiskelusta");
 			kyselyRepository.save(koulukysely);
 
 			Kysymys k1 = new Kysymys("Minkä vuoden opiskelija olet?", koulukysely);
@@ -122,8 +121,20 @@ public class KyselyprojektiApplication {
 			Vastaus v7 = new Vastaus("Satoja", k7);
 			vastausRepository.save(v7);
 
-		
-
+			Vastaus v8 = new Vastaus("Olen toisen vuoden opiskelija", k1);
+			vastausRepository.save(v8);
+			Vastaus v9 = new Vastaus("Opiskelen päivätoteutuksessa", k2);
+			vastausRepository.save(v9);
+			Vastaus v10 = new Vastaus("Tietojenkäsittely", k3);
+			vastausRepository.save(v10);
+			Vastaus v11 = new Vastaus("Kaikki on ollut hauskaa", k4);
+			vastausRepository.save(v11);
+			Vastaus v12 = new Vastaus("Ajankäyttö", k5);
+			vastausRepository.save(v12);
+			Vastaus v13 = new Vastaus("Olen onnistunut", k6);
+			vastausRepository.save(v13);
+			Vastaus v14 = new Vastaus("En muista", k7);
+			vastausRepository.save(v14);
 
 			// sisällöt näkyville terminaaliin loggerin avulla
 			for (Kysely kysely2 : kyselyRepository.findAll()) {

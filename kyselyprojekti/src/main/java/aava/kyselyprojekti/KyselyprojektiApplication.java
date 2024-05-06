@@ -89,7 +89,23 @@ public class KyselyprojektiApplication {
 			Vastaus vastaus3 = new Vastaus("moimoimoi", kysymys2);
 			vastausRepository.save(vastaus3);
 
-			
+			Kysely koulukysely = new Kysely(t1, "Opiskeluajatusten kartoituskysely", "Opiskelijoiden yleisiä näkemyksiä opiskelusta");
+			kyselyRepository.save(koulukysely);
+
+			Kysymys k1 = new Kysymys("Minkä vuoden opiskelija olet?", koulukysely);
+			Kysymys k2 = new Kysymys("Opiskeletko päivätoteutuksessa vai monimuotona?", koulukysely);
+			Kysymys k3 = new Kysymys("Mitä tutkintoa opiskelet?", koulukysely);
+			Kysymys k4 = new Kysymys("Mistä olet eniten nauttinut opinnoissasi?", koulukysely);
+			Kysymys k5 = new Kysymys("Mikä on ollut opinnoissa haastavinta?", koulukysely);
+			Kysymys k6 = new Kysymys("Koetko onnistuneesi opinnoissasi tähän asti?", koulukysely);
+			Kysymys k7 = new Kysymys("Kuinka monta opintopistettä olet suorittanut tähän mennessä?", koulukysely);
+			kysymysRepository.save(k1);
+			kysymysRepository.save(k2);
+			kysymysRepository.save(k3);
+			kysymysRepository.save(k4);
+			kysymysRepository.save(k5);
+			kysymysRepository.save(k6);
+			kysymysRepository.save(k7);
 
 			
 

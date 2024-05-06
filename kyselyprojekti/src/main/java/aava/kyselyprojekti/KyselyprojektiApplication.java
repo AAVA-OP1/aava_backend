@@ -107,7 +107,22 @@ public class KyselyprojektiApplication {
 			kysymysRepository.save(k6);
 			kysymysRepository.save(k7);
 
-			
+			Vastaus v1 = new Vastaus("Olen 2 vuoden opiskelija", k1);
+			vastausRepository.save(v1);
+			Vastaus v2 = new Vastaus("Olen päivätoteutuksessa", k2);
+			vastausRepository.save(v2);
+			Vastaus v3 = new Vastaus("Tiko", k3);
+			vastausRepository.save(v3);
+			Vastaus v4 = new Vastaus("Olen tykännyt kaikesta", k4);
+			vastausRepository.save(v4);
+			Vastaus v5 = new Vastaus("Byrokratia", k5);
+			vastausRepository.save(v5);
+			Vastaus v6 = new Vastaus("Olen onnistuja", k6);
+			vastausRepository.save(v6);
+			Vastaus v7 = new Vastaus("Satoja", k7);
+			vastausRepository.save(v7);
+
+		
 
 
 			// sisällöt näkyville terminaaliin loggerin avulla

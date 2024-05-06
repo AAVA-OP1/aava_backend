@@ -7,12 +7,34 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
   <title>Kyselyt</title>
+
+  <style>
+    .container2 {
+      margin-left: 200px;
+      margin-top: 200px;
+    }
+  </style>
+
+
+  
 </head>
 
 <body>
+
+  <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="index" th:href="@{/index}" class="nav-link" aria-current="page">Home</a></li>
+        <!-- <li class="nav-item"><a href="uusikysely" th:href="@{/uusikysely}" class="nav-link">Uusi kysely</a></li> -->
+        <li class="nav-item"><a href="resthome" th:href="@{/resthome}" class="nav-link active">Rest home</a></li>
+        <li class="nav-item list-group-item-danger "><a href="#" class="nav-link" >Log out</a></li>
+      </ul>
+    </header>
+  </div>
   <!-- aloitussivu -->
 
-
+  <div class="container2">
   <h1>Kysely by id</h1>
 
   <h2>Method: GET endpoint: /kysely{id} /kysely/1</h2>
@@ -106,6 +128,8 @@
     } <br>
     } <br>
   </p>
+
+</div>
 
 
   <!-- HEADER -->

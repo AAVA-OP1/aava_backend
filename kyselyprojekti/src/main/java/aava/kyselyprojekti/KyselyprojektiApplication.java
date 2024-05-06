@@ -57,6 +57,8 @@ public class KyselyprojektiApplication {
 			Kysymys kysymys3 = new Kysymys("Milloin valmistut?", testikysely);
 			kysymysRepository.save(kysymys3);
 
+			
+
 			Kysely testikysely2 = new Kysely(t2, "Toinen testikysely", "Testi kuvaus testaukseen");
 			kyselyRepository.save(testikysely2);
 
@@ -86,6 +88,10 @@ public class KyselyprojektiApplication {
 
 			Vastaus vastaus3 = new Vastaus("moimoimoi", kysymys2);
 			vastausRepository.save(vastaus3);
+
+			
+
+			
 
 
 			// sisällöt näkyville terminaaliin loggerin avulla

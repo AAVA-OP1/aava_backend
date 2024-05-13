@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muokkaa kysymystä</title>
+</head>
+ 
+<body>
+    <h1>Muokkaa kysymystä</h1>
+    <form action="@{/update/{id}(id=${kysymysid})}" th:action="@{/update/{id}(id=${kysymysid})}" th:object="${kysymys}"
+        method="post">
+ 
+        <table>
+            <tr>
+                <td>Title:</td>
+                <td><input type="text" th:field="*{kysymys}" /></td>
+            </tr>
+            
+          
+                
+ 
+            
+                <td><input type="hidden" th:field="*{id}" /></td>
+                <td><button type="submit">Päivitä kysymys</button></td>
+            </tr>
+ 
+        </table>
+    </form>
+</body>
+ 
+</html>

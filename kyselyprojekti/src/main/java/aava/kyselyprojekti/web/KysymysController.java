@@ -1,12 +1,17 @@
 package aava.kyselyprojekti.web;
 
 import java.util.List;
+import java.util.Locale.Category;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -81,5 +86,29 @@ public class KysymysController {
         // Menee takaisin indexiin, eikä jää tarkastele sivulle...
         return "redirect:/index";
      }
+
+    // kysymystenmuokkaus
+    @GetMapping("/muokkaakysymysta/{id}")
+    public String muokkaaKysymysta(@PathVariable Long kysymysid, Model model) {
+        Optional<Kysymys> optionalKysymys = kysymysRepository.findById(kysymysid);
+ 
+        if (optionalKysymys.isPresent()) {
+            Kysymys kysymys = optionalKysymys.get();
+           
+            model.addAttribute("kysymys", kysymys);
+            
+            return "muokkaakysymysta";
+        } else {
+            return "redirect:/tarkastelekyselya";
+        }
+    }
+
+    @PostMapping("/update/{id}")
+    public String paivitettyKysymys(@PathVariable long kysymysid, @ModelAttribute("kysymys") Kysymys paivitettyKysymys) {
+        kysymysRepository.save(paivitettyKysymys);
+        return "redirect:/tarkastelekyselya";
+    }
+
+
 
 }

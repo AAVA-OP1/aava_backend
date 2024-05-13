@@ -9,8 +9,11 @@
  
 <body>
     <h1>Muokkaa kysymystä</h1>
-    <form th:action="@{/update/{kysymysid}(kysymysid=${kysymys.kysymysid})}" th:object="${kysymys}"
-        method="post">
+    <!-- <form th:action="@{/update/{kysymysid}(kysymysid=${kysymys.kysymysid})}" th:object="${kysymys}"
+        method="post"> -->
+
+        <form th:action="@{/muokkaakysymysta/{kysymysid}(kysymysid=${kysymysid})}" th:object="${kysymys}" method="post">
+
 
         
  

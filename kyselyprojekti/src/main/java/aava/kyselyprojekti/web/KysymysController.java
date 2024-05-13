@@ -110,13 +110,27 @@ public class KysymysController {
         return "redirect:/tarkastelekyselya";
     } */
 
-    @PostMapping("/update/{kysymysid}")
-    public String updateKysymys(@PathVariable("kysymysid") Long kysymysid,
+  /*   @PostMapping("/update")
+    public String updateKysymys( @PathVariable("kysymysid") Long kysymysid, 
             @ModelAttribute("kysymys") Kysymys updateKysymys) {
         kysymysRepository.save(updateKysymys);
         return "redirect:/tarkastelekyselya";
  
-    }
+    } */
+/* 
+    @PostMapping("/muokkaakysymysta")
+    public String updateKysymys(Kysymys editKysymys, Model model) {
+        kysymysRepository.save(editKysymys);
+        return "redirect:/tarkastelekyselya";
+ 
+    } */
+
+    @PostMapping("/muokkaakysymysta")
+public String updateKysymys(@ModelAttribute("kysymys") Kysymys editKysymys, Model model) {
+    kysymysRepository.save(editKysymys);
+    return "redirect:/tarkastelekyselya";
+}
+
 
 
 

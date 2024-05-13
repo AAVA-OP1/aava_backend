@@ -9,20 +9,22 @@
  
 <body>
     <h1>Muokkaa kysymystä</h1>
-    <form action="@{/update/{id}(id=${kysymysid})}" th:action="@{/update/{id}(id=${kysymysid})}" th:object="${kysymys}"
+    <form th:action="@{/update/{kysymysid}(kysymysid=${kysymys.kysymysid})}" th:object="${kysymys}"
         method="post">
+
+        
  
         <table>
             <tr>
                 <td>Title:</td>
-                <td><input type="text" th:field="*{kysymys}" /></td>
+                <td><input type="text" th:field="*{sisalto}" /></td>
             </tr>
             
           
                 
  
             
-                <td><input type="hidden" th:field="*{id}" /></td>
+                <td><input type="hidden" th:field="*{kysymysid}" /></td>
                 <td><button type="submit">Päivitä kysymys</button></td>
             </tr>
  

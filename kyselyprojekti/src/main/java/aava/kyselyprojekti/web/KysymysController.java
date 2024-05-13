@@ -88,14 +88,15 @@ public class KysymysController {
      }
 
     // kysymystenmuokkaus
-    @GetMapping("/muokkaakysymysta/{id}")
-    public String muokkaaKysymysta(@PathVariable Long kysymysid, Model model) {
+    @GetMapping("/muokkaakysymysta/{kysymysid}")
+    public String muokkaaKysymysta(@PathVariable("kysymysid") Long kysymysid, Model model) {
         Optional<Kysymys> optionalKysymys = kysymysRepository.findById(kysymysid);
  
         if (optionalKysymys.isPresent()) {
             Kysymys kysymys = optionalKysymys.get();
            
             model.addAttribute("kysymys", kysymys);
+            model.addAttribute("kysymysid", kysymysid);
             
             return "muokkaakysymysta";
         } else {
@@ -103,10 +104,18 @@ public class KysymysController {
         }
     }
 
-    @PostMapping("/update/{id}")
-    public String paivitettyKysymys(@PathVariable long kysymysid, @ModelAttribute("kysymys") Kysymys paivitettyKysymys) {
+    /* @PostMapping("/update/{kysymysid}")
+    public String paivitettyKysymys(@PathVariable ("kysymysid") long kysymysid, @ModelAttribute("kysymys") Kysymys paivitettyKysymys) {
         kysymysRepository.save(paivitettyKysymys);
         return "redirect:/tarkastelekyselya";
+    } */
+
+    @PostMapping("/update/{kysymysid}")
+    public String updateKysymys(@PathVariable("kysymysid") Long kysymysid,
+            @ModelAttribute("kysymys") Kysymys updateKysymys) {
+        kysymysRepository.save(updateKysymys);
+        return "redirect:/tarkastelekyselya";
+ 
     }
 
 

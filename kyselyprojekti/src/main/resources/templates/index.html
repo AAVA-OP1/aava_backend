@@ -36,7 +36,7 @@
           <tr th:each="kysely : ${kyselyt}">
             <td th:text="${kysely.nimi}"></td>
             <td th:text="${kysely.kyselynKuvaus}"></td>
-            <td th:text="${kysely.kyselynTekija}"></td>
+            <td th:text="${kysely.kyselynTekija.nimi}"></td>
             <!-- <td>"Linkki"</td> -->
             <!-- Linkki-toiminnallisuus ei vielä toimi -->
             <td><a th:href="@{'/tarkastelekyselya/' + ${kysely.kyselyid}}" class="btn btn-primary">Katso kysely</a></td>
@@ -66,7 +66,7 @@
             <option th:each="tekija : ${tekijat}" th:value="${tekija.tekijaid}" th:text="${tekija.nimi}"></option>
         </select>
     
-        <button type="submit" class="btn btn-primary">Tallenna kysely (keksi kuvaavampi)</button>
+        <button type="submit" class="btn btn-primary">Tallenna kysely </button>
     </form>
   </div>
 
